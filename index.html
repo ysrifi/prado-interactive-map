@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Plan interactif du Museo del Prado</title>
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
+</head>
+
+<body>
+
+  <main class="museum-app">
+
+    <!-- En-tête -->
+    <header class="museum-header">
+
+    <img
+    class="museum-logo"
+    src="images/logo-traveloptim.png"
+    alt="TravelOptim"
+  >
+
+      <h1 class="museum-title">
+        Plan interactif du Museo del Prado
+      </h1>
+
+      <p class="museum-introduction">
+        Sélectionnez un étage, puis cliquez sur une palette
+        pour découvrir l’emplacement et les informations
+        essentielles de chaque chef-d’œuvre.
+      </p>
+
+    </header>
+
+
+    <!-- Onglets des étages -->
+    <nav
+      class="floor-tabs"
+      aria-label="Sélectionner un étage du musée"
+    >
+
+      <button
+        class="floor-tab"
+        type="button"
+        data-floor="2"
+        aria-pressed="false"
+      >
+        Étage 2
+      </button>
+
+      <button
+        class="floor-tab"
+        type="button"
+        data-floor="1"
+        aria-pressed="false"
+      >
+        Étage 1
+      </button>
+
+      <button
+        class="floor-tab active"
+        type="button"
+        data-floor="0"
+        aria-pressed="true"
+      >
+        Étage 0
+      </button>
+
+      <button
+        class="floor-tab"
+        type="button"
+        data-floor="-1"
+        aria-pressed="false"
+      >
+        Étage -1
+      </button>
+
+    </nav>
+
+
+    <!-- Zone interactive principale -->
+    <section
+      class="museum-workspace"
+      id="museum-workspace"
+    >
+
+      <!-- Colonne du plan -->
+      <div class="map-column">
+
+        <div
+          class="map-viewport"
+          id="map-viewport"
+        >
+
+          <!-- Plan zoomable et déplaçable -->
+          <div
+            class="map-stage"
+            id="map-stage"
+          >
+
+            <img
+              class="museum-map"
+              src="images/plan-musee-prado.png"
+              alt="Plan des quatre étages du Museo del Prado"
+              draggable="false"
+            >
+
+
+            <!-- Zones d’assombrissement des étages -->
+            <div
+              class="floor-overlay"
+              id="floor-overlay"
+              aria-hidden="true"
+            >
+
+              <div class="shade shade-top"></div>
+              <div class="shade shade-right"></div>
+              <div class="shade shade-bottom"></div>
+              <div class="shade shade-left"></div>
+
+            </div>
+
+
+            <!-- Palettes des œuvres -->
+            <div
+              class="artwork-markers"
+              id="artwork-markers"
+            ></div>
+
+          </div>
+
+
+          <!-- Contrôles du plan -->
+          <div
+            class="map-controls"
+            aria-label="Contrôles du plan"
+          >
+
+            <div
+              class="direction-controls"
+              aria-label="Déplacer le plan"
+            >
+
+              <button
+                id="move-up"
+                class="map-control-button direction-up"
+                type="button"
+                aria-label="Déplacer le plan vers le haut"
+                title="Haut"
+              >
+                ↑
+              </button>
+
+              <button
+                id="move-left"
+                class="map-control-button direction-left"
+                type="button"
+                aria-label="Déplacer le plan vers la gauche"
+                title="Gauche"
+              >
+                ←
+              </button>
+
+              <button
+                id="move-right"
+                class="map-control-button direction-right"
+                type="button"
+                aria-label="Déplacer le plan vers la droite"
+                title="Droite"
+              >
+                →
+              </button>
+
+              <button
+                id="move-down"
+                class="map-control-button direction-down"
+                type="button"
+                aria-label="Déplacer le plan vers le bas"
+                title="Bas"
+              >
+                ↓
+              </button>
+
+            </div>
+
+
+            <button
+              id="zoom-in"
+              class="map-control-button"
+              type="button"
+              aria-label="Zoomer"
+              title="Zoomer"
+            >
+              +
+            </button>
+
+            <button
+              id="zoom-out"
+              class="map-control-button"
+              type="button"
+              aria-label="Dézoomer"
+              title="Dézoomer"
+            >
+              −
+            </button>
+
+            <button
+              id="reset-map"
+              class="map-control-button reset-map-button"
+              type="button"
+              aria-label="Recentrer le plan"
+              title="Recentrer le plan"
+            >
+              ⟳
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- Fiche d’information -->
+      <aside
+        class="artwork-panel"
+        id="artwork-panel"
+        aria-live="polite"
+        aria-hidden="true"
+      >
+
+        <button
+          id="close-artwork-panel"
+          class="panel-close-button"
+          type="button"
+          aria-label="Fermer la fiche de l’œuvre"
+        >
+          ×
+        </button>
+
+
+        <div class="artwork-panel-content">
+
+          <img
+            id="panel-artwork-image"
+            class="panel-artwork-image"
+            src=""
+            alt=""
+          >
+
+
+          <h2
+            id="panel-artwork-title"
+            class="panel-artwork-title"
+          ></h2>
+
+
+          <p
+            id="panel-artwork-artist"
+            class="panel-artwork-artist"
+          ></p>
+
+
+          <dl class="panel-artwork-details">
+
+            <div class="artwork-detail artwork-year">
+
+              <dt>Année</dt>
+
+              <dd id="panel-artwork-year"></dd>
+
+            </div>
+
+
+            <div class="artwork-detail artwork-location">
+
+              <dt>Localisation</dt>
+
+              <dd>
+                <span id="panel-artwork-floor"></span>
+                ·
+                <span id="panel-artwork-room"></span>
+              </dd>
+
+            </div>
+
+
+            <div class="artwork-detail artwork-medium">
+
+              <dt>Technique et dimensions</dt>
+
+              <dd id="panel-artwork-medium"></dd>
+
+            </div>
+
+          </dl>
+
+
+          <a
+            id="panel-article-link"
+            class="panel-article-link"
+            href="#"
+          >
+            Explorer dans l’article
+          </a>
+
+        </div>
+
+      </aside>
+
+    </section>
+
+  </main>
+
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+
+</body>
+
+</html>
