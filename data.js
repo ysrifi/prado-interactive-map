@@ -216,7 +216,7 @@ const museumData = {
       room: "12",
       year: "1656",
       medium: "Huile sur toile, 320 x 279 cm",
-    image: "images/les-menines.jpg",
+    image: "images/les-menines.webp",
      anchor: "#les-menines",
       position: { x: 46, y: 36 }
     },
