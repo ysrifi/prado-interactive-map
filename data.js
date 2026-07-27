@@ -131,16 +131,16 @@ const museumData = {
     },
   
     {
-      id: "testament-isabelle",
-      title: "Le testament de la reine Isabelle la Catholique",
-      artist: "Rosales",
+      id: "annonciation",
+      title: "L'Annonciation",
+      artist: "Fra Angelico",
       floor: 0,
-      room: "61B",
-      year: "1864",
-      medium: "Huile sur toile - 290 × 400 cm",
-    image: "images/testament-isabelle.webp",
-     anchor: "#testament-isabelle",
-      position: { x: 30, y: 58 }
+      room: "56B",
+      year: "1426",
+      medium: "tempera sur panneau de bois - 162,3 × 191,5 cm",
+    image: "images/annonciation.webp",
+     anchor: "#annonciation",
+      position: { x: 55, y: 63.5 }
     },
   
     {
