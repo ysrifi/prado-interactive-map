@@ -137,23 +137,23 @@ const museumData = {
       floor: 0,
       room: "56B",
       year: "1426",
-      medium: "tempera sur panneau de bois - 162,3 × 191,5 cm",
+      medium: "Tempera sur panneau de bois - 162,3 × 191,5 cm",
     image: "images/annonciation.webp",
      anchor: "#annonciation",
       position: { x: 55, y: 63.5 }
     },
   
     {
-      id: "embarquement-sainte-paule",
-      title: "Paysage avec l'embarquement de Sainte Paule Romaine",
-      artist: "Lorena",
+      id: "charles-quint-muhlberg",
+      title: "Portrait équestre de Charles Quint à Mühlberg",
+      artist: "Le Titien",
       floor: 1,
-      room: "2",
-      year: "1639",
-      medium: "Huile sur toile - 211 × 145 cm",
-    image: "images/embarquement-sainte-paule.webp",
-     anchor: "#embarquement-sainte-paule",
-      position: { x: 75, y: 45 }
+      room: "27",
+      year: "1548",
+      medium: "Huile sur toile - 335 x 283 cm",
+    image: "images/charles-quint-muhlberg.webp",
+     anchor: "#charles-quint-muhlberg",
+      position: { x: 48, y: 35 }
     },
   
     {
