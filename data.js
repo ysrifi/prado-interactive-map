@@ -231,7 +231,7 @@ const museumData = {
       medium: "Huile sur toile - 274 × 190 cm",
     image: "images/immaculee-conception.webp",
      anchor: "#immaculee-conception",
-      position: { x: 26, y: 36 }
+      position: { x: 26, y: 34 }
     },
   
     {
