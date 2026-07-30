@@ -307,7 +307,7 @@ const museumData = {
       room: "15A",
       year: "1655-1660",
       medium: "Huile sur toile - 220 x 289 cm",
-    image: "fileuses.webp",
+    image: "images/fileuses.webp",
      anchor: "#fileuses",
       position: { x: 30, y: 36 }
    }
