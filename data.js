@@ -300,16 +300,16 @@ const museumData = {
     },
   
     {
-      id: "saturne",
-      title: "Saturne dévorant un de ses fils",
-      artist: "Goya",
-      floor: 0,
-      room: "67",
-      year: "1819-1823",
-      medium: "Peinture murale transférée sur toile - 146 × 83 cm",
-    image: "images/saturne.webp",
-     anchor: "#saturne",
-      position: { x: 10, y: 53.5 }
+      id: "fileuses",
+      title: "Les Fileuses",
+      artist: "Velázquez",
+      floor: 1,
+      room: "15A",
+      year: "1655-1660",
+      medium: "Huile sur toile - 220 x 289 cm",
+    image: "fileuses.webp",
+     anchor: "#fileuses",
+      position: { x: 30, y: 36 }
    }
   
   ]
