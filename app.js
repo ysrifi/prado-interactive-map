@@ -142,6 +142,26 @@ const activePointers =
 let lastPinchDistance = null;
 let lastPinchCenter = null;
 
+const toggleRouteButton =
+  document.getElementById(
+    "toggle-route-button"
+  );
+
+const travelOptimRouteLayer =
+  document.getElementById(
+    "traveloptim-route"
+  );
+
+const travelOptimRouteLine =
+  document.getElementById(
+    "traveloptim-route-line"
+  );
+
+  const travelOptimRouteMarkers =
+  document.getElementById(
+    "traveloptim-route-markers"
+  );
+
 /* =========================
    ÉTAT DU PLAN
 ========================= */
@@ -169,6 +189,219 @@ const MIN_SCALE = 0.65;
 const MAX_SCALE = 4;
 const ZOOM_STEP = 0.2;
 
+/* =========================
+   POINTS DU PARCOURS
+========================= */
+
+const travelOptimPath = [
+  { x: 50, y: 68 },
+  { x: 39, y: 65 },
+  { x: 46.4, y: 63.2 },
+  { x: 48.5, y: 64.1 },
+  { x: 45.5, y: 65 },
+  { x: 55, y: 67.3 },
+  { x: 58.5, y: 66.5 },
+  { x: 57, y: 66},
+  { x: 61, y: 65},
+  { x: 53, y: 63.3},
+  { x: 55, y: 61.5 },
+  { x: 36.5, y: 57.5 },
+  { x: 33, y: 58.5 },
+  { x: 26.5, y: 56.8 },
+  { x: 23, y: 58 },
+  { x: 21.5, y: 56.5 },
+  { x: 10, y: 54 },
+  { x: 12, y: 54},
+  { x: 16, y: 55},
+  { x: 18.5, y : 54.5},
+  { x: 22.5, y: 55.5},
+  { x: 29, y: 54},
+  { x: 20, y: 52},
+  { x: 20, y: 2.7},
+  { x: 17.5, y: 3.3},
+  { x: 13, y: 2},
+  { x: 12, y: 3},
+  { x: 12, y: 28},
+  { x: 15, y: 29},
+  { x: 12, y: 29.7},
+  { x: 7, y: 29},
+  { x: 12, y: 30},
+  { x: 22.5, y: 27.3},
+  { x: 19, y: 26},
+  { x: 22, y: 25.8},
+  { x: 30.5, y: 27.8},
+  { x: 25, y: 29.7},
+  { x: 36.5, y: 32.5},
+  { x: 33, y: 33.5},
+  { x: 26, y: 31.7},
+  { x: 22.5, y: 32.7},
+  { x: 32.7, y: 35.1},
+  { x: 30, y: 36},
+  { x: 35, y: 35.5},
+  { x: 42, y: 37},
+  { x: 46, y: 36},
+  { x: 48, y: 35},
+  { x: 65, y: 39},
+  { x: 59.3, y: 38.5},
+  { x: 57, y: 39.5},
+  { x: 60, y: 40},
+  { x: 57, y: 41},
+  { x: 54, y: 40},
+  { x: 49, y: 39},
+  { x: 45, y: 40},
+  { x: 56, y: 42.5},
+  { x: 60, y: 41.2},
+  { x: 76, y: 45},
+  { x: 73, y: 44},
+  { x: 72, y: 43.3},
+  { x: 76.5, y: 41.8},
+  { x: 80, y: 43},
+  { x: 80, y: 19},
+  { x: 78, y: 20},
+  { x: 75, y: 20.1},
+  { x: 67, y: 18.2},
+  { x: 71, y: 17.3},
+  { x: 75, y: 16.8},
+  { x: 80, y: 14.5},
+  { x: 90, y: 17},
+  { x: 85, y: 17.4},
+  { x: 85, y: 43},
+  { x: 88, y: 44.7},
+  
+
+];
+
+function renderTravelOptimRoute() {
+  const points = travelOptimPath
+    .map(
+      function (point) {
+        return `${point.x},${point.y}`;
+      }
+    )
+    .join(" ");
+
+  travelOptimRouteLine.setAttribute(
+    "points",
+    points
+  );
+}
+
+function setTravelOptimRouteVisibility(
+  isVisible
+) {
+  travelOptimRouteLayer.classList.toggle(
+    "is-visible",
+    isVisible
+  );
+
+  travelOptimRouteLayer.setAttribute(
+    "aria-hidden",
+    String(!isVisible)
+  );
+
+  travelOptimRouteMarkers.classList.toggle(
+    "is-visible",
+    isVisible
+  );
+  
+  travelOptimRouteMarkers.setAttribute(
+    "aria-hidden",
+    String(!isVisible)
+  );
+
+  toggleRouteButton.classList.toggle(
+    "is-active",
+    isVisible
+  );
+
+  toggleRouteButton.setAttribute(
+    "aria-pressed",
+    String(isVisible)
+  );
+
+  toggleRouteButton.textContent =
+    isVisible
+      ? "Masquer le parcours TravelOptim"
+      : "Afficher le parcours TravelOptim";
+}
+
+toggleRouteButton.addEventListener(
+  "click",
+  function () {
+    const isVisible =
+      travelOptimRouteLayer.classList.contains(
+        "is-visible"
+      );
+
+    setTravelOptimRouteVisibility(
+      !isVisible
+    );
+  }
+);
+
+function createTravelOptimRouteMarker(
+  point,
+  type,
+  symbol,
+  label
+) {
+  const marker =
+    document.createElement("div");
+
+  marker.className =
+    `traveloptim-route-marker traveloptim-route-marker-${type}`;
+
+  marker.style.left =
+    `${point.x}%`;
+
+  marker.style.top =
+    `${point.y}%`;
+
+  marker.textContent =
+    symbol;
+
+  marker.setAttribute(
+    "aria-label",
+    label
+  );
+
+  travelOptimRouteMarkers.appendChild(
+    marker
+  );
+}
+
+
+function renderTravelOptimRouteMarkers() {
+  travelOptimRouteMarkers.innerHTML = "";
+
+  if (travelOptimPath.length < 2) {
+    return;
+  }
+
+  const firstPoint =
+    travelOptimPath[0];
+
+  const lastPoint =
+    travelOptimPath[
+      travelOptimPath.length - 1
+    ];
+
+  createTravelOptimRouteMarker(
+    firstPoint,
+    "start",
+    "▶",
+    "Début du parcours TravelOptim"
+  );
+
+  createTravelOptimRouteMarker(
+    lastPoint,
+    "end",
+    "■",
+    "Fin du parcours TravelOptim"
+  );
+
+  updateTravelOptimRouteMarkerScale();
+}
 
 /* =========================
    OUTILS
@@ -194,8 +427,29 @@ function updateMapTransform() {
   `;
 
   updateMarkerScale();
+  updateTravelOptimRouteMarkerScale();
 }
 
+function updateTravelOptimRouteMarkerScale() {
+  const markerScale = Math.max(
+    0.05,
+    1 / mapState.scale
+  );
+
+  const routeMarkers =
+    document.querySelectorAll(
+      ".traveloptim-route-marker"
+    );
+
+  routeMarkers.forEach(
+    function (marker) {
+      marker.style.setProperty(
+        "--route-marker-scale",
+        markerScale
+      );
+    }
+  );
+}
 
 /* =========================
    ADAPTER LA TAILLE DES PALETTES AU ZOOM
@@ -752,8 +1006,29 @@ function fillArtworkPanel(artwork) {
   panelArtworkMedium.textContent =
     artwork.medium || "Information à venir";
 
-  panelArticleLink.href =
-    artwork.anchor || "#";
+
+  /* =========================
+     LIEN VERS L’ARTICLE
+  ========================= */
+
+  if (
+    artwork.featured === true &&
+    artwork.anchor
+  ) {
+    panelArticleLink.href =
+      artwork.anchor;
+
+    panelArticleLink.hidden =
+      false;
+  } else {
+    panelArticleLink.hidden =
+      true;
+  }
+
+
+  /* =========================
+     IMAGE
+  ========================= */
 
   if (artwork.image) {
     panelArtworkImage.src =
@@ -775,7 +1050,6 @@ function fillArtworkPanel(artwork) {
       true;
   }
 }
-
 
 /* =========================
    OUVRIR LA FICHE
@@ -828,9 +1102,6 @@ function createArtworkMarker(artwork) {
 
   marker.type = "button";
 
-  marker.className =
-    "artwork-marker";
-
   marker.dataset.artworkId =
     artwork.id;
 
@@ -846,8 +1117,41 @@ function createArtworkMarker(artwork) {
   marker.style.top =
     `${artwork.position.y}%`;
 
-  marker.textContent =
-    "🎨";
+  /*
+   * Incontournable :
+   * miniature de l’œuvre.
+   *
+   * Autres œuvres :
+   * palette classique.
+   */
+  if (
+    artwork.featured === true &&
+    artwork.image
+  ) {
+    marker.className =
+      "artwork-marker artwork-marker-featured";
+
+    const image =
+      document.createElement("img");
+
+    image.src =
+      artwork.image;
+
+    image.alt = "";
+
+    image.draggable =
+      false;
+
+    marker.appendChild(
+      image
+    );
+  } else {
+    marker.className =
+      "artwork-marker";
+
+    marker.textContent =
+      "🎨";
+  }
 
   marker.setAttribute(
     "aria-label",
@@ -859,10 +1163,6 @@ function createArtworkMarker(artwork) {
     function (event) {
       event.stopPropagation();
 
-      /*
-       * Si l’œuvre appartient à un autre étage,
-       * son étage s’allume automatiquement.
-       */
       if (
         Number(artwork.floor) !==
         currentFloor
@@ -888,7 +1188,6 @@ function createArtworkMarker(artwork) {
     marker
   );
 }
-
 
 /* =========================
    BOUTON DE FERMETURE
@@ -1049,3 +1348,11 @@ selectFloor(
 );
 
 displayArtworkMarkers();
+
+renderTravelOptimRoute();
+
+renderTravelOptimRouteMarkers();
+
+setTravelOptimRouteVisibility(
+  false
+);
