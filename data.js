@@ -428,14 +428,14 @@ const museumData = {
     },
 
     {
-      id: "embarquement-sainte-paul",
+      id: "embarquement-sainte-paule",
       title: "Paysage avec l’embarquement à Ostie de sainte Paule Romaine",
       artist: "Claude Lorrain",
       floor: 1,
       room: "2",
       year: "1639",
       medium: "Huile sur toile - 211 × 145 cm",
-    image: "images/embarquement-sainte-paul.webp",
+    image: "images/embarquement-sainte-paule.webp",
       position: { x: 76, y: 45 }
     },
 
