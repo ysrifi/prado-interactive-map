@@ -26,7 +26,7 @@
 
     <img
     class="museum-logo"
-    src="images/logo-traveloptim.png"
+    src="logo-traveloptim.png"
     alt="TravelOptim"
   >
 
@@ -87,6 +87,20 @@
 
     </nav>
 
+<!-- Commande du parcours -->
+<div class="route-toolbar">
+
+  <button
+    id="toggle-route-button"
+    class="toggle-route-button"
+    type="button"
+    aria-pressed="false"
+    aria-controls="traveloptim-route"
+  >
+    Afficher le parcours TravelOptim
+  </button>
+
+</div>
 
     <!-- Zone interactive principale -->
     <section
@@ -103,42 +117,68 @@
         >
 
           <!-- Plan zoomable et déplaçable -->
-          <div
-            class="map-stage"
-            id="map-stage"
-          >
+<div
+class="map-stage"
+id="map-stage"
+>
 
-            <img
-              class="museum-map"
-              src="images/plan-musee-prado.png"
-              alt="Plan des quatre étages du Museo del Prado"
-              draggable="false"
-            >
-
-
-            <!-- Zones d’assombrissement des étages -->
-            <div
-              class="floor-overlay"
-              id="floor-overlay"
-              aria-hidden="true"
-            >
-
-              <div class="shade shade-top"></div>
-              <div class="shade shade-right"></div>
-              <div class="shade shade-bottom"></div>
-              <div class="shade shade-left"></div>
-
-            </div>
+<!-- Image du plan -->
+<img
+  class="museum-map"
+  src="/plan-musee-prado.png"
+  alt="Plan des quatre étages du Museo del Prado"
+  draggable="false"
+>
 
 
-            <!-- Palettes des œuvres -->
-            <div
-              class="artwork-markers"
-              id="artwork-markers"
-            ></div>
+<!-- Parcours TravelOptim -->
+<svg
+  id="traveloptim-route"
+  class="traveloptim-route"
+  viewBox="0 0 100 100"
+  preserveAspectRatio="none"
+  aria-hidden="true"
+>
 
-          </div>
+  <polyline
+    id="traveloptim-route-line"
+    class="traveloptim-route-line"
+    points=""
+  ></polyline>
 
+</svg>
+
+
+<!-- Icônes départ / arrivée -->
+<div
+  id="traveloptim-route-markers"
+  class="traveloptim-route-markers"
+  aria-hidden="true"
+></div>
+
+
+<!-- Zones d’assombrissement des étages -->
+<div
+  class="floor-overlay"
+  id="floor-overlay"
+  aria-hidden="true"
+>
+
+  <div class="shade shade-top"></div>
+  <div class="shade shade-right"></div>
+  <div class="shade shade-bottom"></div>
+  <div class="shade shade-left"></div>
+
+</div>
+
+
+<!-- Palettes des œuvres -->
+<div
+  class="artwork-markers"
+  id="artwork-markers"
+></div>
+
+</div>
 
           <!-- Contrôles du plan -->
           <div
