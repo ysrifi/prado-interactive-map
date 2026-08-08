@@ -775,7 +775,6 @@ button {
   display: block;
 
   margin-top: 20px;
-
   padding: 13px 16px;
 
   border-radius: 10px;
@@ -790,11 +789,9 @@ button {
   text-decoration: none;
 }
 
-.panel-article-link:hover {
-  background:
-    var(--traveloptim-green-dark);
+.panel-article-link[hidden] {
+  display: none;
 }
-
 
 /* =========================
    RESPONSIVE
@@ -904,4 +901,244 @@ button {
     width: 40px;
     height: 40px;
   }
+}
+
+/* =========================
+   COMMANDE DU PARCOURS
+========================= */
+
+.route-toolbar {
+  display: flex;
+  justify-content: center;
+
+  margin-bottom: 14px;
+}
+
+.toggle-route-button {
+  min-height: 46px;
+
+  padding: 11px 22px;
+
+  border:
+    1px solid
+    var(--traveloptim-green);
+
+  border-radius: 12px;
+
+  background: #ffffff;
+  color: var(--traveloptim-green-dark);
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.toggle-route-button:hover {
+  transform: translateY(-1px);
+
+  background:
+    var(--traveloptim-green);
+
+  color: #ffffff;
+}
+
+.toggle-route-button.is-active {
+  background:
+    var(--traveloptim-green);
+
+  color: #ffffff;
+}
+
+
+/* =========================
+   TRACÉ DU PARCOURS
+========================= */
+
+.traveloptim-route {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 3;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: visible;
+
+  pointer-events: none;
+
+  opacity: 0;
+  visibility: hidden;
+
+  transition:
+    opacity 0.25s ease,
+    visibility 0.25s ease;
+}
+
+.traveloptim-route.is-visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.traveloptim-route-line {
+  fill: none;
+
+  stroke: #2563EB;
+
+  stroke-width: 1.3;
+
+  stroke-linecap: round;
+  stroke-linejoin: round;
+
+  vector-effect: non-scaling-stroke;
+
+  opacity: 0.9;
+
+  filter:
+    drop-shadow(
+      0 1px 2px rgba(0,0,0,.25)
+    );
+}
+
+/* =========================
+   ICÔNES DU PARCOURS
+========================= */
+
+.traveloptim-route-markers {
+  position: absolute;
+  inset: 0;
+
+  z-index: 4;
+
+  pointer-events: none;
+
+  opacity: 0;
+  visibility: hidden;
+
+  transition:
+    opacity 0.25s ease,
+    visibility 0.25s ease;
+}
+
+.traveloptim-route-markers.is-visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.traveloptim-route-marker {
+  position: absolute;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 32px;
+  height: 32px;
+
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+
+  background: #2563eb;
+  color: #ffffff;
+
+  box-shadow:
+    0 4px 10px
+    rgba(15, 42, 46, 0.38);
+
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+
+  transform:
+    translate(-50%, -50%)
+    scale(
+      var(
+        --route-marker-scale,
+        1
+      )
+    );
+
+  transform-origin: center;
+}
+
+.traveloptim-route-marker-end {
+  background: #2563eb;
+}
+
+/* =========================
+   ŒUVRES INCONTOURNABLES
+========================= */
+
+.artwork-marker-featured {
+  width: 46px;
+  height: 46px;
+
+  padding: 0;
+
+  border:
+    3px solid #ffffff;
+
+  background: #ffffff;
+
+  overflow: visible;
+}
+
+
+/* Image miniature */
+
+.artwork-marker-featured img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  border-radius: 50%;
+
+  object-fit: cover;
+
+  pointer-events: none;
+}
+
+
+/* Étoile */
+
+.artwork-marker-featured::before {
+  content: "★";
+
+  position: absolute;
+
+  top: -10px;
+  right: -7px;
+
+  z-index: 3;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 20px;
+  height: 20px;
+
+  border:
+    2px solid #ffffff;
+
+  border-radius: 50%;
+
+  background: #f5b942;
+  color: #ffffff;
+
+  font-size: 12px;
+  line-height: 1;
+
+  box-shadow:
+    0 2px 5px
+    rgba(0, 0, 0, 0.28);
+
+  pointer-events: none;
 }
