@@ -172,7 +172,7 @@ const museumData = {
     {
       id: "execution-torrijos",
       title: "Exécution de Torrijos et ses compagnons",
-      artist: "Goya",
+      artist: "Antonio Gisbert",
       floor: 0,
       room: "75",
       year: "1888",
