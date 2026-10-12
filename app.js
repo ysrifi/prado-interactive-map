@@ -185,7 +185,7 @@ const mapState = {
    RÉGLAGES DU ZOOM
 ========================= */
 
-const MIN_SCALE = 0.65;
+const MIN_SCALE = 1;
 const MAX_SCALE = 4;
 const ZOOM_STEP = 0.2;
 
@@ -194,81 +194,250 @@ const ZOOM_STEP = 0.2;
 ========================= */
 
 const travelOptimPath = [
-  { x: 50, y: 68 },
-  { x: 39, y: 65 },
-  { x: 46.4, y: 63.2 },
-  { x: 48.5, y: 64.1 },
-  { x: 45.5, y: 65 },
-  { x: 55, y: 67.3 },
-  { x: 58.5, y: 66.5 },
-  { x: 57, y: 66},
-  { x: 61, y: 65},
-  { x: 53, y: 63.3},
-  { x: 55, y: 61.5 },
-  { x: 36.5, y: 57.5 },
-  { x: 33, y: 58.5 },
-  { x: 26.5, y: 56.8 },
-  { x: 23, y: 58 },
-  { x: 21.5, y: 56.5 },
-  { x: 10, y: 54 },
-  { x: 12, y: 54},
-  { x: 16, y: 55},
-  { x: 18.5, y : 54.5},
-  { x: 22.5, y: 55.5},
-  { x: 29, y: 54},
-  { x: 20, y: 52},
-  { x: 20, y: 2.7},
-  { x: 17.5, y: 3.3},
-  { x: 13, y: 2},
-  { x: 12, y: 3},
-  { x: 12, y: 28},
-  { x: 15, y: 29},
-  { x: 12, y: 29.7},
-  { x: 7, y: 29},
-  { x: 12, y: 30},
-  { x: 22.5, y: 27.3},
-  { x: 19, y: 26},
-  { x: 22, y: 25.8},
-  { x: 30.5, y: 27.8},
-  { x: 25, y: 29.7},
-  { x: 36.5, y: 32.5},
-  { x: 33, y: 33.5},
-  { x: 26, y: 31.7},
-  { x: 22.5, y: 32.7},
-  { x: 32.7, y: 35.1},
-  { x: 30, y: 36},
-  { x: 35, y: 35.5},
-  { x: 42, y: 37},
-  { x: 46, y: 36},
-  { x: 48, y: 35},
-  { x: 65, y: 39},
-  { x: 59.3, y: 38.5},
-  { x: 57, y: 39.5},
-  { x: 60, y: 40},
-  { x: 57, y: 41},
-  { x: 54, y: 40},
-  { x: 49, y: 39},
-  { x: 45, y: 40},
-  { x: 56, y: 42.5},
-  { x: 60, y: 41.2},
-  { x: 76, y: 45},
-  { x: 73, y: 44},
-  { x: 72, y: 43.3},
-  { x: 76.5, y: 41.8},
-  { x: 80, y: 43},
-  { x: 80, y: 19},
-  { x: 78, y: 20},
-  { x: 75, y: 20.1},
-  { x: 67, y: 18.2},
-  { x: 71, y: 17.3},
-  { x: 75, y: 16.8},
-  { x: 80, y: 14.5},
-  { x: 90, y: 17},
-  { x: 85, y: 17.4},
-  { x: 85, y: 43},
-  { x: 88, y: 44.7},
-  
-
+  {
+    "x": 55.34,
+    "y": 95.47
+  },
+  {
+    "x": 36.71,
+    "y": 89.51
+  },
+  {
+    "x": 45.63,
+    "y": 85.78
+  },
+  {
+    "x": 48.26,
+    "y": 86.89
+  },
+  {
+    "x": 44.14,
+    "y": 88.67
+  },
+  {
+    "x": 54.09,
+    "y": 92.01
+  },
+  {
+    "x": 59.23,
+    "y": 89.84
+  },
+  {
+    "x": 56.03,
+    "y": 88.56
+  },
+  {
+    "x": 59.46,
+    "y": 87.06
+  },
+  {
+    "x": 52.03,
+    "y": 85.33
+  },
+  {
+    "x": 56.37,
+    "y": 84.22
+  },
+  {
+    "x": 39.8,
+    "y": 78.82
+  },
+  {
+    "x": 37.29,
+    "y": 80.1
+  },
+  {
+    "x": 29.17,
+    "y": 77.76
+  },
+  {
+    "x": 25.74,
+    "y": 78.93
+  },
+  {
+    "x": 5.63,
+    "y": 72.53
+  },
+  {
+    "x": 13.06,
+    "y": 73.59
+  },
+  {
+    "x": 16.14,
+    "y": 72.87
+  },
+  {
+    "x": 24.37,
+    "y": 75.2
+  },
+  {
+    "x": 28.03,
+    "y": 73.37
+  },
+  {
+    "x": 15.69,
+    "y": 68.8
+  },
+  {
+    "x": 13.63,
+    "y": 5.34
+  },
+  {
+    "x": 8.94,
+    "y": 6.74
+  },
+  {
+    "x": 8.94,
+    "y": 38.74
+  },
+  {
+    "x": 12.03,
+    "y": 40.13
+  },
+  {
+    "x": 9.97,
+    "y": 41.3
+  },
+  {
+    "x": 4.71,
+    "y": 40.41
+  },
+  {
+    "x": 9.74,
+    "y": 42.7
+  },
+  {
+    "x": 20.94,
+    "y": 37.24
+  },
+  {
+    "x": 19.11,
+    "y": 35.35
+  },
+  {
+    "x": 31.69,
+    "y": 39.24
+  },
+  {
+    "x": 26.43,
+    "y": 41.75
+  },
+  {
+    "x": 37.17,
+    "y": 45.76
+  },
+  {
+    "x": 35.91,
+    "y": 47.65
+  },
+  {
+    "x": 28.83,
+    "y": 45.87
+  },
+  {
+    "x": 26.09,
+    "y": 46.98
+  },
+  {
+    "x": 36.49,
+    "y": 50.82
+  },
+  {
+    "x": 34.54,
+    "y": 52.83
+  },
+  {
+    "x": 41.4,
+    "y": 51.82
+  },
+  {
+    "x": 43.46,
+    "y": 52.66
+  },
+  {
+    "x": 49.4,
+    "y": 49.88
+  },
+  {
+    "x": 64.14,
+    "y": 54.66
+  },
+  {
+    "x": 55.8,
+    "y": 53.83
+  },
+  {
+    "x": 59.23,
+    "y": 55.61
+  },
+  {
+    "x": 56.37,
+    "y": 56.78
+  },
+  {
+    "x": 48.94,
+    "y": 54.44
+  },
+  {
+    "x": 44.6,
+    "y": 56.17
+  },
+  {
+    "x": 55.57,
+    "y": 59.9
+  },
+  {
+    "x": 60.49,
+    "y": 58.45
+  },
+  {
+    "x": 81.4,
+    "y": 64.91
+  },
+  {
+    "x": 76.03,
+    "y": 61.12
+  },
+  {
+    "x": 80.83,
+    "y": 59.62
+  },
+  {
+    "x": 85.97,
+    "y": 62.68
+  },
+  {
+    "x": 85.86,
+    "y": 30.73
+  },
+  {
+    "x": 81.86,
+    "y": 31.73
+  },
+  {
+    "x": 69.86,
+    "y": 28.33
+  },
+  {
+    "x": 83.23,
+    "y": 23.6
+  },
+  {
+    "x": 95.34,
+    "y": 27.44
+  },
+  {
+    "x": 90.89,
+    "y": 28.72
+  },
+  {
+    "x": 90.89,
+    "y": 60.9
+  },
+  {
+    "x": 91.46,
+    "y": 64.24
+  }
 ];
 
 function renderTravelOptimRoute() {
@@ -419,7 +588,40 @@ function clamp(value, minimum, maximum) {
    APPLIQUER LA TRANSFORMATION
 ========================= */
 
+/* =========================
+   LIMITES DE DÉPLACEMENT DU PLAN
+========================= */
+
+function constrainMapPosition() {
+
+  const viewportWidth = mapViewport.clientWidth;
+  const viewportHeight = mapViewport.clientHeight;
+
+  const stageWidth = mapStage.offsetWidth;
+  const stageHeight = mapStage.offsetHeight;
+
+  const scaledWidth = stageWidth * mapState.scale;
+  const scaledHeight = stageHeight * mapState.scale;
+
+  const maxX = Math.max(
+    0,
+    (scaledWidth - viewportWidth) / 2
+  );
+
+  const maxY = Math.max(
+    0,
+    (scaledHeight - viewportHeight) / 2
+  );
+
+  mapState.x = clamp(mapState.x, -maxX, maxX);
+  mapState.y = clamp(mapState.y, -maxY, maxY);
+
+}
+
 function updateMapTransform() {
+
+  constrainMapPosition();
+
   mapStage.style.transform = `
     translate(-50%, -50%)
     translate(${mapState.x}px, ${mapState.y}px)
@@ -476,6 +678,22 @@ function updateMarkerScale() {
 
 
 /* =========================
+   ZOOM MINIMUM ADAPTATIF
+========================= */
+
+function getMinimumScale() {
+
+  const scaleX =
+    mapViewport.clientWidth / mapStage.offsetWidth;
+
+  const scaleY =
+    mapViewport.clientHeight / mapStage.offsetHeight;
+
+  return Math.min(1, scaleX, scaleY);
+
+}
+
+/* =========================
    APPLIQUER UN NIVEAU DE ZOOM
 ========================= */
 
@@ -484,7 +702,7 @@ function setZoom(newScale, origin = null) {
 
   const limitedScale = clamp(
     newScale,
-    MIN_SCALE,
+    getMinimumScale(),
     MAX_SCALE
   );
 
@@ -1338,6 +1556,22 @@ moveRightButton.addEventListener(
 );
 
 /* =========================
+   ADAPTATION AU REDIMENSIONNEMENT
+========================= */
+
+window.addEventListener("resize", function () {
+
+  mapState.scale = clamp(
+    mapState.scale,
+    getMinimumScale(),
+    MAX_SCALE
+  );
+
+  updateMapTransform();
+
+});
+
+/* =========================
    DÉMARRAGE
 ========================= */
 
@@ -1356,3 +1590,4 @@ renderTravelOptimRouteMarkers();
 setTravelOptimRouteVisibility(
   false
 );
+
