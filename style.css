@@ -105,8 +105,7 @@ button {
 .floor-tabs {
   display: grid;
 
-  grid-template-columns:
-    repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
 
   gap: 10px;
 
@@ -216,7 +215,7 @@ button {
   left: 50%;
 
   width: 355px;
-  height: 875px;
+  height: 729px;
 
   transform:
     translate(-50%, -50%);
