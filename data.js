@@ -8,48 +8,20 @@ const museumData = {
   floors: {
     "2": {
       label: "Étage 2",
-
-      area: {
-        x: 2,
-        y: 0,
-        width: 96,
-        height: 25
-      }
+      area: { x: 0, y: 0, width: 100, height: 34 }
     },
-
+  
     "1": {
       label: "Étage 1",
-
-      area: {
-        x: 1,
-        y: 25,
-        width: 97,
-        height: 25
-      }
+      area: { x: 0, y: 34, width: 100, height: 32 }
     },
-
+  
     "0": {
       label: "Étage 0",
-
-      area: {
-        x: 1,
-        y: 50,
-        width: 98,
-        height: 25
-      }
-    },
-
-    "-1": {
-      label: "Étage -1",
-
-      area: {
-        x: 1,
-        y: 75,
-        width: 98,
-        height: 26
-      }
+      area: { x: 0, y: 66, width: 100, height: 34 }
     }
   },
+
   artworks: [
 
     {
@@ -64,7 +36,10 @@ const museumData = {
      anchor: "#jardin-des-delices",
      featured: true,
 
-      position: { x: 49, y: 65 }
+      position: {
+        "x": 46.77,
+        "y": 89.9
+      }
     },
   
     {
@@ -76,7 +51,10 @@ const museumData = {
       year: "1470 - 1472",
       medium: "Huile sur bois - 95 × 271 cm",
     image: "images/triptyque-adoration-mages.webp",
-      position: { x: 56, y: 66.5 }
+      position: {
+        "x": 54.43,
+        "y": 92.74
+      }
     },
   
     {
@@ -88,7 +66,10 @@ const museumData = {
       year: "Vers 1443",
       medium: "Huile sur bois - 204 × 259 cm",
     image: "images/descente.webp",
-      position: { x: 58, y: 66 }
+      position: {
+        "x": 59.8,
+        "y": 90.29
+      }
     },
 
     {
@@ -100,7 +81,10 @@ const museumData = {
       year: "1552-1563",
       medium: "Huile sur panneau - 117 × 162 cm",
     image: "images/triomphe-mort.webp",
-      position: { x: 46, y: 64.5 }
+      position: {
+        "x": 42.89,
+        "y": 88.73
+      }
     },
 
   
@@ -113,7 +97,10 @@ const museumData = {
       year: "1498",
       medium: "Huile sur panneau - 52 × 41 cm",
     image: "images/autoportrait.webp",
-      position: { x: 53.5, y: 62.5 }
+      position: {
+        "x": 52.14,
+        "y": 84.83
+      }
     },
   
     {
@@ -127,7 +114,10 @@ const museumData = {
     image: "images/annonciation.webp",
      anchor: "#annonciation",
      featured: true,
-      position: { x: 55, y: 63.5 }
+      position: {
+        "x": 55.23,
+        "y": 86.23
+      }
     },
 
     {
@@ -139,7 +129,10 @@ const museumData = {
       year: "1510 - 1511",
       medium: "Huile sur bois - 79 × 61 cm",
     image: "images/cardinal.webp",
-      position: { x: 55, y: 61.5 }
+      position: {
+        "x": 65.17,
+        "y": 86.28
+      }
     },
 
     {
@@ -151,7 +144,10 @@ const museumData = {
       year: "1684",
       medium: "Huile sur toile - 287 × 398 cm",
     image: "images/testament-isabelle.webp",
-      position: { x: 35, y: 59 }
+      position: {
+        "x": 36.26,
+        "y": 79.88
+      }
     },
   
     {
@@ -166,7 +162,10 @@ const museumData = {
      anchor: "#trois-mai-1808",
      featured: true,
 
-      position: { x: 21.5, y: 56.5 }
+      position: {
+        "x": 20.37,
+        "y": 77.65
+      }
     },
   
     {
@@ -178,7 +177,10 @@ const museumData = {
       year: "1888",
       medium: "Huile sur toile - 392 × 602 cm",
     image: "images/execution-torrijos.webp",
-      position: { x: 36.5, y: 57.5 }
+      position: {
+        "x": 36.71,
+        "y": 77.15
+      }
     },
 
     {
@@ -190,7 +192,10 @@ const museumData = {
       year: "1800",
       medium: "Huile sur toile - 280 × 336 cm",
     image: "images/famille-charles-iv.webp",
-      position: { x: 28, y: 30 }
+      position: {
+        "x": 27.29,
+        "y": 41.87
+      }
     },
   
     {
@@ -204,7 +209,10 @@ const museumData = {
     image: "images/maja-nue.webp",
      anchor: "#maja-nue",
      featured: true,
-      position: { x: 22, y: 25.5 }
+      position: {
+        "x": 19.29,
+        "y": 35.26
+      }
     },
   
     {
@@ -216,7 +224,10 @@ const museumData = {
       year: "1800-1807",
       medium: "Huile sur toile - 95 × 188 cm",
     image: "images/maja-vetue.webp",
-      position: { x: 19, y: 26 }
+      position: {
+        "x": 15.29,
+        "y": 35.75
+      }
     },
 
     {
@@ -228,7 +239,10 @@ const museumData = {
       year: "1767-1769",
       medium: "Huile sur toile - 281 × 155 cm",
     image: "images/immaculee-conception.webp",
-      position: { x: 7, y: 29 }
+      position: {
+        "x": 4.57,
+        "y": 40.13
+      }
     },
 
     {
@@ -240,7 +254,10 @@ const museumData = {
       year: "1786",
       medium: "Huile sur toile - 277 × 642 cm",
     image: "images/aire-ete.webp",
-      position: { x: 13, y: 2 }
+      position: {
+        "x": 12.57,
+        "y": 6.66
+      }
     },
 
     {
@@ -252,7 +269,10 @@ const museumData = {
       year: "1820-1823",
       medium: "Revêtement mural transféré sur toile - 143 × 81 cm",
     image: "images/saturne.webp",
-      position: { x: 10, y: 54 }
+      position: {
+        "x": 4.14,
+        "y": 72.64
+      }
     },
 
     {
@@ -264,7 +284,10 @@ const museumData = {
       year: "Vers 1580",
       medium: "peinture à l'huile sur toile - 82 × 66 cm",
     image: "images/chevalier-main-poitrine.webp",
-      position: { x: 62, y: 39.5 }
+      position: {
+        "x": 59.23,
+        "y": 55.05
+      }
     },
 
     {
@@ -276,7 +299,10 @@ const museumData = {
       year: "1637",
       medium: "Huile sur toile - 110 × 291 cm",
     image: "images/isaac-jacob.webp",
-      position: { x: 54, y: 40 }
+      position: {
+        "x": 51.46,
+        "y": 56
+      }
     },   
 
     {
@@ -290,7 +316,10 @@ const museumData = {
     image: "images/les-menines.webp",
      anchor: "#les-menines",
      featured: true,
-      position: { x: 46, y: 36 }
+      position: {
+        "x": 43.69,
+        "y": 52.71
+      }
     },
 
     {
@@ -302,7 +331,10 @@ const museumData = {
       year: "1655-1660",
       medium: "Huile sur toile - 220 x 289 cm",
     image: "images/fileuses.webp",
-      position: { x: 30, y: 36 }
+      position: {
+        "x": 32.42,
+        "y": 53.52
+      }
    },
 
    {
@@ -314,7 +346,10 @@ const museumData = {
     year: "1628-1629",
     medium: "Huile sur toile - 165 x 225 cm",
   image: "images/triomphe-bacchus.webp",
-    position: { x: 47, y: 39 }
+    position: {
+      "x": 47.91,
+      "y": 54.83
+    }
    },   
 
    {
@@ -326,7 +361,10 @@ const museumData = {
     year: "1612-1614",
     medium: "Huile sur toile - 315 x 175 cm",
   image: "images/adoration-mages.webp",
-    position: { x: 55, y: 38.5 }
+    position: {
+      "x": 55.28,
+      "y": 54.09
+    }
    },     
 
     {
@@ -338,7 +376,10 @@ const museumData = {
       year: "1548",
       medium: "Huile sur toile - 335 x 283 cm",
     image: "images/charles-quint-muhlberg.webp",
-      position: { x: 48, y: 35 }
+      position: {
+        "x": 49.74,
+        "y": 49.26
+      }
     },
   
     {
@@ -350,7 +391,10 @@ const museumData = {
       year: "1600",
       medium: "Huile sur toile - 110 × 91 cm",
     image: "images/david-goliath.webp",
-        position: { x: 57, y: 43 }
+        position: {
+          "x": 55.11,
+          "y": 60.51
+        }
     },
   
     {
@@ -362,7 +406,10 @@ const museumData = {
       year: "1548-1549",
       medium: "Huile sur toile - 210 × 533 cm",
     image: "images/lavement-pieds.webp",
-      position: { x: 65, y: 39 }
+      position: {
+        "x": 66.54,
+        "y": 54.5
+      }
     },
   
     {
@@ -374,7 +421,10 @@ const museumData = {
       year: "1660-1665",
       medium: "Huile sur toile - 274 × 190 cm",
     image: "images/los-venerables.webp",
-      position: { x: 27, y: 34 }
+      position: {
+        "x": 32.86,
+        "y": 50.01
+      }
     },
   
     {
@@ -388,7 +438,10 @@ const museumData = {
     image: "images/trois-graces.webp",
      anchor: "#trois-graces",
      featured: true,
-      position: { x: 33, y: 32 }
+      position: {
+        "x": 37.4,
+        "y": 44.92
+      }
     },
   
     {
@@ -400,7 +453,10 @@ const museumData = {
       year: "1630-1635",
       medium: "Huile sur toile - 199 × 286 cm",
     image: "images/jardin-amour.webp",
-      position: { x: 30, y: 31 }
+      position: {
+        "x": 33.14,
+        "y": 44.03
+      }
     },   
 
     {
@@ -412,7 +468,10 @@ const museumData = {
       year: "1634",
       medium: "Huile sur toile - 143 × 155 cm",
     image: "images/judith-holoferne.webp",
-      position: { x: 90, y: 17 }
+      position: {
+        "x": 95.14,
+        "y": 27.33
+      }
     },
 
     {
@@ -424,7 +483,10 @@ const museumData = {
       year: "1617",
       medium: "Huile sur panneau - 65 × 110 cm",
     image: "images/sens-vue.webp",
-      position: { x: 78, y: 20 }
+      position: {
+        "x": 81.57,
+        "y": 32.41
+      }
     },
 
     {
@@ -436,7 +498,10 @@ const museumData = {
       year: "1639",
       medium: "Huile sur toile - 211 × 145 cm",
     image: "images/embarquement-sainte-paule.webp",
-      position: { x: 76, y: 45 }
+      position: {
+        "x": 81.86,
+        "y": 64.85
+      }
     },
 
     {
@@ -448,7 +513,10 @@ const museumData = {
       year: "1630-1631",
       medium: "Huile sur toile - 145 × 197 cm",
     image: "images/parnasse.webp",
-      position: { x: 73, y: 44 }
+      position: {
+        "x": 76.83,
+        "y": 62.79
+      }
     },   
   
   ]
