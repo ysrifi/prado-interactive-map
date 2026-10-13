@@ -221,6 +221,9 @@ button {
     translate(-50%, -50%);
 
   transform-origin: center;
+
+   touch-action: none;
+will-change: transform;
 }
 
 .museum-map {
