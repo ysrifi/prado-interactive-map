@@ -694,6 +694,31 @@ function getMinimumScale() {
 }
 
 /* =========================
+   ZOOM INITIAL MOBILE
+========================= */
+
+function getInitialScale() {
+
+  if (window.innerWidth > 700) {
+    return 1;
+  }
+
+  const viewportWidth = mapViewport.clientWidth;
+  const stageWidth = mapStage.offsetWidth;
+
+  // Sur mobile, le plan occupe presque
+  // toute la largeur disponible.
+  const widthScale = viewportWidth / stageWidth;
+
+  return clamp(
+    widthScale * 1.5,
+    getMinimumScale(),
+    MAX_SCALE
+  );
+
+}
+
+/* =========================
    APPLIQUER UN NIVEAU DE ZOOM
 ========================= */
 
@@ -1081,7 +1106,7 @@ mapViewport.addEventListener(
 resetMapButton.addEventListener(
   "click",
   function () {
-    mapState.scale = 1;
+   mapState.scale = getInitialScale();
     mapState.x = 0;
     mapState.y = 0;
 
@@ -1574,6 +1599,11 @@ window.addEventListener("resize", function () {
 /* =========================
    DÉMARRAGE
 ========================= */
+
+mapState.scale = getInitialScale();
+
+mapState.x = 0;
+mapState.y = 0;
 
 updateMapTransform();
 
