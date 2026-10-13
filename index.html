@@ -1,362 +1,73 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
-
 <head>
-  <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
-
-  <title>Plan interactif du Museo del Prado</title>
-
-  <link
-    rel="stylesheet"
-    href="style.css"
-  >
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Plan interactif du Museo del Prado | TravelOptim</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
+<main class="museum-app">
+  <header class="museum-header">
+    <img class="museum-logo" src="images/logo-traveloptim.png" alt="TravelOptim">
+    <h1 class="museum-title">Plan interactif du Museo del Prado</h1>
+    <p class="museum-introduction">Sélectionnez un étage, puis cliquez sur une palette pour découvrir l’emplacement et les informations essentielles de chaque chef-d’œuvre.</p>
+  </header>
 
-  <main class="museum-app">
+  <nav class="floor-tabs" aria-label="Sélectionner un étage du musée">
+    <button class="floor-tab" type="button" data-floor="2" aria-pressed="false">Étage 2</button>
+    <button class="floor-tab" type="button" data-floor="1" aria-pressed="false">Étage 1</button>
+    <button class="floor-tab active" type="button" data-floor="0" aria-pressed="true">Étage 0</button>
+  </nav>
 
-    <!-- En-tête -->
-    <header class="museum-header">
+  <div class="route-toolbar">
+    <button id="toggle-route-button" class="toggle-route-button" type="button" aria-pressed="false" aria-controls="traveloptim-route">Afficher le parcours TravelOptim</button>
+  </div>
 
-    <img
-    class="museum-logo"
-    src="images/logo-traveloptim.png"
-    alt="TravelOptim"
-  >
-
-      <h1 class="museum-title">
-        Plan interactif du Museo del Prado
-      </h1>
-
-      <p class="museum-introduction">
-        Sélectionnez un étage, puis cliquez sur une palette
-        pour découvrir l’emplacement et les informations
-        essentielles de chaque chef-d’œuvre.
-      </p>
-
-    </header>
-
-
-    <!-- Onglets des étages -->
-    <nav
-      class="floor-tabs"
-      aria-label="Sélectionner un étage du musée"
-    >
-
-      <button
-        class="floor-tab"
-        type="button"
-        data-floor="2"
-        aria-pressed="false"
-      >
-        Étage 2
-      </button>
-
-      <button
-        class="floor-tab"
-        type="button"
-        data-floor="1"
-        aria-pressed="false"
-      >
-        Étage 1
-      </button>
-
-      <button
-        class="floor-tab active"
-        type="button"
-        data-floor="0"
-        aria-pressed="true"
-      >
-        Étage 0
-      </button>
-
-    </nav>
-
-<!-- Commande du parcours -->
-<div class="route-toolbar">
-
-  <button
-    id="toggle-route-button"
-    class="toggle-route-button"
-    type="button"
-    aria-pressed="false"
-    aria-controls="traveloptim-route"
-  >
-    Afficher le parcours TravelOptim
-  </button>
-
-</div>
-
-    <!-- Zone interactive principale -->
-    <section
-      class="museum-workspace"
-      id="museum-workspace"
-    >
-
-      <!-- Colonne du plan -->
-      <div class="map-column">
-
-        <div
-          class="map-viewport"
-          id="map-viewport"
-        >
-
-          <!-- Plan zoomable et déplaçable -->
-<div
-class="map-stage"
-id="map-stage"
->
-
-<!-- Image du plan -->
-<img
-  class="museum-map"
-  src="images/plan-prado-fr.png"
-  alt="Plan des trois étages du Museo del Prado"
-  draggable="false"
->
-
-
-<!-- Parcours TravelOptim -->
-<svg
-  id="traveloptim-route"
-  class="traveloptim-route"
-  viewBox="0 0 100 100"
-  preserveAspectRatio="none"
-  aria-hidden="true"
->
-
-  <polyline
-    id="traveloptim-route-line"
-    class="traveloptim-route-line"
-    points=""
-  ></polyline>
-
-</svg>
-
-
-<!-- Icônes départ / arrivée -->
-<div
-  id="traveloptim-route-markers"
-  class="traveloptim-route-markers"
-  aria-hidden="true"
-></div>
-
-
-<!-- Zones d’assombrissement des étages -->
-<div
-  class="floor-overlay"
-  id="floor-overlay"
-  aria-hidden="true"
->
-
-  <div class="shade shade-top"></div>
-  <div class="shade shade-right"></div>
-  <div class="shade shade-bottom"></div>
-  <div class="shade shade-left"></div>
-
-</div>
-
-
-<!-- Palettes des œuvres -->
-<div
-  class="artwork-markers"
-  id="artwork-markers"
-></div>
-
-</div>
-
-          <!-- Contrôles du plan -->
-          <div
-            class="map-controls"
-            aria-label="Contrôles du plan"
-          >
-
-            <div
-              class="direction-controls"
-              aria-label="Déplacer le plan"
-            >
-
-              <button
-                id="move-up"
-                class="map-control-button direction-up"
-                type="button"
-                aria-label="Déplacer le plan vers le haut"
-                title="Haut"
-              >
-                ↑
-              </button>
-
-              <button
-                id="move-left"
-                class="map-control-button direction-left"
-                type="button"
-                aria-label="Déplacer le plan vers la gauche"
-                title="Gauche"
-              >
-                ←
-              </button>
-
-              <button
-                id="move-right"
-                class="map-control-button direction-right"
-                type="button"
-                aria-label="Déplacer le plan vers la droite"
-                title="Droite"
-              >
-                →
-              </button>
-
-              <button
-                id="move-down"
-                class="map-control-button direction-down"
-                type="button"
-                aria-label="Déplacer le plan vers le bas"
-                title="Bas"
-              >
-                ↓
-              </button>
-
-            </div>
-
-
-            <button
-              id="zoom-in"
-              class="map-control-button"
-              type="button"
-              aria-label="Zoomer"
-              title="Zoomer"
-            >
-              +
-            </button>
-
-            <button
-              id="zoom-out"
-              class="map-control-button"
-              type="button"
-              aria-label="Dézoomer"
-              title="Dézoomer"
-            >
-              −
-            </button>
-
-            <button
-              id="reset-map"
-              class="map-control-button reset-map-button"
-              type="button"
-              aria-label="Recentrer le plan"
-              title="Recentrer le plan"
-            >
-              ⟳
-            </button>
-
+  <section class="museum-workspace" id="museum-workspace">
+    <div class="map-column">
+      <div class="map-viewport" id="map-viewport" aria-label="Plan interactif du musée, déplaçable et zoomable">
+        <div class="map-stage" id="map-stage">
+          <img class="museum-map" src="plan-prado-fr.png" alt="Plan des étages du Museo del Prado" draggable="false">
+          <svg class="traveloptim-route" id="traveloptim-route" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+            <polyline class="traveloptim-route-line" id="traveloptim-route-line" fill="none" points=""></polyline>
+          </svg>
+          <div class="traveloptim-route-markers" id="traveloptim-route-markers" aria-hidden="true"></div>
+          <div class="floor-overlay" id="floor-overlay" aria-hidden="true">
+            <div class="shade shade-top"></div><div class="shade shade-right"></div>
+            <div class="shade shade-bottom"></div><div class="shade shade-left"></div>
           </div>
-
+          <div class="artwork-markers" id="artwork-markers"></div>
         </div>
-
+        <div class="map-controls" aria-label="Contrôles du plan">
+          <div class="direction-controls">
+            <button id="move-up" class="map-control-button direction-up" type="button" aria-label="Déplacer vers le haut">↑</button>
+            <button id="move-left" class="map-control-button direction-left" type="button" aria-label="Déplacer vers la gauche">←</button>
+            <button id="move-right" class="map-control-button direction-right" type="button" aria-label="Déplacer vers la droite">→</button>
+            <button id="move-down" class="map-control-button direction-down" type="button" aria-label="Déplacer vers le bas">↓</button>
+          </div>
+          <button id="zoom-in" class="map-control-button" type="button" aria-label="Agrandir le plan">+</button>
+          <button id="zoom-out" class="map-control-button" type="button" aria-label="Réduire le plan">−</button>
+          <button id="reset-map" class="map-control-button reset-map-button" type="button" aria-label="Recentrer le plan">⟳</button>
+        </div>
       </div>
-
-
-      <!-- Fiche d’information -->
-      <aside
-        class="artwork-panel"
-        id="artwork-panel"
-        aria-live="polite"
-        aria-hidden="true"
-      >
-
-        <button
-          id="close-artwork-panel"
-          class="panel-close-button"
-          type="button"
-          aria-label="Fermer la fiche de l’œuvre"
-        >
-          ×
-        </button>
-
-
-        <div class="artwork-panel-content">
-
-          <img
-            id="panel-artwork-image"
-            class="panel-artwork-image"
-            src=""
-            alt=""
-          >
-
-
-          <h2
-            id="panel-artwork-title"
-            class="panel-artwork-title"
-          ></h2>
-
-
-          <p
-            id="panel-artwork-artist"
-            class="panel-artwork-artist"
-          ></p>
-
-
-          <dl class="panel-artwork-details">
-
-            <div class="artwork-detail artwork-year">
-
-              <dt>Année</dt>
-
-              <dd id="panel-artwork-year"></dd>
-
-            </div>
-
-
-            <div class="artwork-detail artwork-location">
-
-              <dt>Localisation</dt>
-
-              <dd>
-                <span id="panel-artwork-floor"></span>
-                ·
-                <span id="panel-artwork-room"></span>
-              </dd>
-
-            </div>
-
-
-            <div class="artwork-detail artwork-medium">
-
-              <dt>Technique et dimensions</dt>
-
-              <dd id="panel-artwork-medium"></dd>
-
-            </div>
-
-          </dl>
-
-
-          <a
-            id="panel-article-link"
-            class="panel-article-link"
-            href="#"
-          >
-            Explorer dans l’article
-          </a>
-
-        </div>
-
-      </aside>
-
-    </section>
-
-  </main>
-
-
-  <script src="data.js"></script>
-  <script src="app.js"></script>
-
+    </div>
+    <aside class="artwork-panel" id="artwork-panel" aria-hidden="true" aria-live="polite">
+      <button id="close-artwork-panel" class="close-artwork-panel" type="button" aria-label="Fermer la fiche">×</button>
+      <div class="artwork-panel-content">
+        <img id="panel-artwork-image" class="panel-artwork-image" alt="" hidden>
+        <h2 id="panel-artwork-title" class="panel-artwork-title"></h2>
+        <p id="panel-artwork-artist" class="panel-artwork-artist"></p>
+        <p id="panel-artwork-year"></p>
+        <p id="panel-artwork-floor"></p>
+        <p id="panel-artwork-room"></p>
+        <p id="panel-artwork-medium"></p>
+        <a id="panel-article-link" href="#" hidden>Explorer dans l’article</a>
+      </div>
+    </aside>
+  </section>
+</main>
+<script src="data.js"></script>
+<script src="app.js"></script>
 </body>
-
 </html>
