@@ -52,19 +52,91 @@
         </div>
       </div>
     </div>
-    <aside class="artwork-panel" id="artwork-panel" aria-hidden="true" aria-live="polite">
-      <button id="close-artwork-panel" class="close-artwork-panel" type="button" aria-label="Fermer la fiche">×</button>
-      <div class="artwork-panel-content">
-        <img id="panel-artwork-image" class="panel-artwork-image" alt="" hidden>
-        <h2 id="panel-artwork-title" class="panel-artwork-title"></h2>
-        <p id="panel-artwork-artist" class="panel-artwork-artist"></p>
-        <p id="panel-artwork-year"></p>
-        <p id="panel-artwork-floor"></p>
-        <p id="panel-artwork-room"></p>
-        <p id="panel-artwork-medium"></p>
-        <a id="panel-article-link" href="#" hidden>Explorer dans l’article</a>
+    
+<!-- =========================================
+     FICHE DÉTAILLÉE DE L’ŒUVRE
+========================================= -->
+
+<aside
+  class="artwork-panel"
+  id="artwork-panel"
+  aria-hidden="true"
+  aria-live="polite"
+>
+
+  <!-- Bouton de fermeture -->
+  <button
+    id="close-artwork-panel"
+    class="panel-close-button"
+    type="button"
+    aria-label="Fermer la fiche"
+  >
+    ×
+  </button>
+
+  <!-- Contenu de la fiche -->
+  <div class="artwork-panel-content">
+
+    <!-- Image -->
+    <img
+      id="panel-artwork-image"
+      class="panel-artwork-image"
+      alt=""
+      hidden
+    >
+
+    <!-- Titre et artiste -->
+    <h2
+      id="panel-artwork-title"
+      class="panel-artwork-title"
+    ></h2>
+
+    <p
+      id="panel-artwork-artist"
+      class="panel-artwork-artist"
+    ></p>
+
+    <!-- Informations sur l’œuvre -->
+    <dl class="panel-artwork-details">
+
+      <!-- Année -->
+      <div class="artwork-detail">
+        <dt>Année</dt>
+        <dd id="panel-artwork-year"></dd>
       </div>
-    </aside>
+
+      <!-- Localisation -->
+      <div class="artwork-detail">
+        <dt>Localisation</dt>
+        <dd>
+          <span id="panel-artwork-floor"></span>
+          <span aria-hidden="true"> · </span>
+          <span id="panel-artwork-room"></span>
+        </dd>
+      </div>
+
+      <!-- Technique et dimensions -->
+      <div class="artwork-detail">
+        <dt>Technique et dimensions</dt>
+        <dd id="panel-artwork-medium"></dd>
+      </div>
+
+    </dl>
+
+    <!-- Lien vers l’article -->
+    <a
+      id="panel-article-link"
+      class="panel-article-link"
+      href="#"
+      hidden
+    >
+      Explorer dans l’article
+    </a>
+
+  </div>
+
+</aside>
+
   </section>
 </main>
 <script src="data.js"></script>
