@@ -1,29 +1,23 @@
 /* =========================
    CONFIGURATION DES ÉTAGES
 ========================= */
-
 const museumData = {
   defaultFloor: 0,
-
   floors: {
     "2": {
       label: "Étage 2",
       area: { x: 0, y: 0, width: 100, height: 34 }
     },
-  
     "1": {
       label: "Étage 1",
       area: { x: 0, y: 34, width: 100, height: 32 }
     },
-  
     "0": {
       label: "Étage 0",
       area: { x: 0, y: 66, width: 100, height: 34 }
     }
   },
-
   artworks: [
-
     {
       id: "jardin-des-delices",
       title: "Le Jardin des délices",
@@ -35,13 +29,11 @@ const museumData = {
     image: "images/jardin-des-delices.webp",
      anchor: "#jardin-des-delices",
      featured: true,
-
       position: {
         "x": 46.77,
         "y": 89.9
       }
     },
-  
     {
       id: "triptyque-adoration-mages",
       title: "Triptyque de l'Adoration des Mages",
@@ -56,7 +48,6 @@ const museumData = {
         "y": 92.74
       }
     },
-  
     {
       id: "descente",
       title: "La Descente de croix",
@@ -71,7 +62,6 @@ const museumData = {
         "y": 90.29
       }
     },
-
     {
       id: "triomphe-mort",
       title: "Le Triomphe de la Mort",
@@ -86,8 +76,6 @@ const museumData = {
         "y": 88.73
       }
     },
-
-  
     {
       id: "autoportrait",
       title: "Autoportrait",
@@ -102,7 +90,6 @@ const museumData = {
         "y": 84.83
       }
     },
-  
     {
       id: "annonciation",
       title: "L'Annonciation",
@@ -119,7 +106,6 @@ const museumData = {
         "y": 86.23
       }
     },
-
     {
       id: "cardinal",
       title: "Le Cardinal",
@@ -134,7 +120,6 @@ const museumData = {
         "y": 86.28
       }
     },
-
     {
       id: "testament-isabelle",
       title: "Le Testament de la reine Isabelle",
@@ -149,7 +134,6 @@ const museumData = {
         "y": 79.88
       }
     },
-  
     {
       id: "trois-mai-1808",
       title: "Le trois mai 1808 à Madrid",
@@ -161,13 +145,11 @@ const museumData = {
     image: "images/trois-mai-1808.webp",
      anchor: "#trois-mai-1808",
      featured: true,
-
       position: {
         "x": 20.37,
         "y": 77.65
       }
     },
-  
     {
       id: "execution-torrijos",
       title: "Exécution de Torrijos et ses compagnons",
@@ -182,7 +164,6 @@ const museumData = {
         "y": 77.15
       }
     },
-
     {
       id: "famille-charles-iv",
       title: "La Famille de Charles IV",
@@ -197,7 +178,6 @@ const museumData = {
         "y": 41.87
       }
     },
-  
     {
       id: "maja-nue",
       title: "La Maja nue",
@@ -214,7 +194,6 @@ const museumData = {
         "y": 35.26
       }
     },
-  
     {
       id: "maja-vetue",
       title: "La Maja vêtue",
@@ -229,7 +208,6 @@ const museumData = {
         "y": 35.75
       }
     },
-
     {
       id: "immaculee-conception",
       title: "L’immaculée Conception",
@@ -244,7 +222,6 @@ const museumData = {
         "y": 40.13
       }
     },
-
     {
       id: "aire-ete",
       title: "L'aire ou l'Été",
@@ -259,7 +236,6 @@ const museumData = {
         "y": 6.66
       }
     },
-
     {
       id: "saturne",
       title: "Saturne dévorant un de ses fils",
@@ -274,7 +250,6 @@ const museumData = {
         "y": 72.64
       }
     },
-
     {
       id: "chevalier-main-poitrine",
       title: "Le chevalier à la main sur la poitrine",
@@ -289,7 +264,6 @@ const museumData = {
         "y": 55.05
       }
     },
-
     {
       id: "isaac-jacob",
       title: "Isaac et Jacob",
@@ -304,7 +278,6 @@ const museumData = {
         "y": 56
       }
     },   
-
     {
       id: "les-menines",
       title: "Les Ménines",
@@ -321,7 +294,6 @@ const museumData = {
         "y": 52.71
       }
     },
-
     {
       id: "fileuses",
       title: "Les Fileuses",
@@ -336,7 +308,6 @@ const museumData = {
         "y": 53.52
       }
    },
-
    {
     id: "triomphe-bacchus",
     title: "Le Triomphe de Bacchus",
@@ -351,7 +322,6 @@ const museumData = {
       "y": 54.83
     }
    },   
-
    {
     id: "adoration-mages",
     title: "L’Adoration des Mages",
@@ -366,7 +336,6 @@ const museumData = {
       "y": 54.09
     }
    },     
-
     {
       id: "charles-quint-muhlberg",
       title: "Portrait équestre de Charles Quint à Mühlberg",
@@ -381,7 +350,6 @@ const museumData = {
         "y": 49.26
       }
     },
-  
     {
       id: "david-goliath",
       title: "David vainqueur de Goliath",
@@ -396,7 +364,6 @@ const museumData = {
           "y": 60.51
         }
     },
-  
     {
       id: "lavement-pieds",
       title: "Le Lavement des pieds",
@@ -411,7 +378,6 @@ const museumData = {
         "y": 54.5
       }
     },
-  
     {
       id: "los-venerables",
       title: "L'Immaculée Conception dite « Los Venerables »",
@@ -426,7 +392,6 @@ const museumData = {
         "y": 50.01
       }
     },
-  
     {
       id: "trois-graces",
       title: "Les Trois Grâces",
@@ -443,7 +408,6 @@ const museumData = {
         "y": 44.92
       }
     },
-  
     {
       id: "jardin-amour",
       title: "Le Jardin de l’Amour",
@@ -458,7 +422,6 @@ const museumData = {
         "y": 44.03
       }
     },   
-
     {
       id: "judith-holoferne",
       title: "Judith lors du banquet d'Holopherne",
@@ -473,7 +436,6 @@ const museumData = {
         "y": 27.33
       }
     },
-
     {
       id: "sens-vue",
       title: "Les Sens : La Vue",
@@ -488,7 +450,6 @@ const museumData = {
         "y": 32.41
       }
     },
-
     {
       id: "embarquement-sainte-paule",
       title: "Paysage avec l’embarquement à Ostie de sainte Paule Romaine",
@@ -503,7 +464,6 @@ const museumData = {
         "y": 64.85
       }
     },
-
     {
       id: "parnasse",
       title: "Le Parnasse",
@@ -518,6 +478,5 @@ const museumData = {
         "y": 62.79
       }
     },   
-  
   ]
 };
