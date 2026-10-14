@@ -1084,6 +1084,47 @@ function fillArtworkPanel(artwork) {
     panelArticleLink.hidden =
       true;
   }
+
+/* =========================================
+   NAVIGATION VERS L'ARTICLE TRAVELOPTIM
+========================================= */
+
+const PRADO_ARTICLE_URL =
+  "https://traveloptim.com/madrid-fr/visiter-musee-prado-madrid/";
+
+panelArticleLink.addEventListener("click", function (event) {
+
+  const anchor = new URL(
+    panelArticleLink.href,
+    window.location.href
+  ).hash;
+
+  if (!/^#[a-z0-9-]+$/.test(anchor)) return;
+
+  event.preventDefault();
+
+  // Plan intégré dans WordPress
+  if (window.parent !== window) {
+
+    window.parent.postMessage(
+      {
+        type: "TRAVELOPTIM_SCROLL_TO_ARTWORK",
+        anchor: anchor
+      },
+      "https://traveloptim.com"
+    );
+
+  } else {
+
+    // Plan ouvert directement sur GitHub Pages
+    window.location.assign(
+      PRADO_ARTICLE_URL + anchor
+    );
+
+  }
+
+});
+   
   /* =========================
      IMAGE
   ========================= */
