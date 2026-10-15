@@ -815,3 +815,19 @@ will-change: transform;
   .map-stage { touch-action: none; }
 }
 [hidden] { display: none !important; }
+
+/* =========================================
+   FICHE FERMÉE : SUPPRIMER L'ESPACE RÉSERVÉ
+========================================= */
+
+@media (min-width: 701px) {
+
+  .museum-workspace:not(.panel-open) .artwork-panel {
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+}
