@@ -1116,14 +1116,15 @@ panelArticleLink.addEventListener("click", function (event) {
 
   } else {
 
-    // Plan ouvert directement sur GitHub Pages
-    window.location.assign(
-      PRADO_ARTICLE_URL + anchor
-        "_blank",
+  // Plan ouvert en plein écran :
+  // ouvrir l'article dans un nouvel onglet
+  window.open(
+    PRADO_ARTICLE_URL + anchor,
+    "_blank",
     "noopener,noreferrer"
-    );
+  );
 
-  }
+}
 
 });
    
