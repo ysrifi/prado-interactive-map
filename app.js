@@ -1119,6 +1119,8 @@ panelArticleLink.addEventListener("click", function (event) {
     // Plan ouvert directement sur GitHub Pages
     window.location.assign(
       PRADO_ARTICLE_URL + anchor
+        "_blank",
+    "noopener,noreferrer"
     );
 
   }
