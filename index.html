@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="fr">
 <head>
@@ -20,7 +19,7 @@
         alt="TravelOptim"
       >
 
-      <div class="language-switcher" role="group" aria-label="Choisir la langue">
+      <div class="language-switcher" role="group" aria-label="Choisir la langue" data-i18n-aria="languageLabel">
         <button type="button" class="language-button active" data-lang="fr" aria-pressed="true">FR</button>
         <span class="language-separator" aria-hidden="true">|</span>
         <button type="button" class="language-button" data-lang="en" aria-pressed="false">EN</button>
@@ -38,7 +37,7 @@
   </header>
 
   <!-- ONGLETS DES ÉTAGES -->
-  <nav class="floor-tabs" aria-label="Sélectionner un étage du musée">
+  <nav class="floor-tabs" aria-label="Sélectionner un étage du musée" data-i18n-aria="floorsLabel">
     <button class="floor-tab" type="button" data-floor="2" data-i18n-floor aria-pressed="false">Étage 2</button>
     <button class="floor-tab" type="button" data-floor="1" data-i18n-floor aria-pressed="false">Étage 1</button>
     <button class="floor-tab active" type="button" data-floor="0" data-i18n-floor aria-pressed="true">Étage 0</button>
@@ -64,7 +63,7 @@
       <div
         class="map-viewport"
         id="map-viewport"
-        aria-label="Plan interactif du musée, déplaçable et zoomable"
+        aria-label="Plan interactif du musée, déplaçable et zoomable" data-i18n-aria="viewportLabel"
       >
         <div class="map-stage" id="map-stage">
 
@@ -112,17 +111,17 @@
         </div>
 
         <!-- CONTRÔLES DU PLAN -->
-        <div class="map-controls" aria-label="Contrôles du plan">
+        <div class="map-controls" aria-label="Contrôles du plan" data-i18n-aria="controlsLabel">
           <div class="direction-controls">
-            <button id="move-up" class="map-control-button direction-up" type="button" aria-label="Déplacer vers le haut">↑</button>
-            <button id="move-left" class="map-control-button direction-left" type="button" aria-label="Déplacer vers la gauche">←</button>
-            <button id="move-right" class="map-control-button direction-right" type="button" aria-label="Déplacer vers la droite">→</button>
-            <button id="move-down" class="map-control-button direction-down" type="button" aria-label="Déplacer vers le bas">↓</button>
+            <button id="move-up" class="map-control-button direction-up" type="button" aria-label="Déplacer vers le haut" data-i18n-aria="moveUp">↑</button>
+            <button id="move-left" class="map-control-button direction-left" type="button" aria-label="Déplacer vers la gauche" data-i18n-aria="moveLeft">←</button>
+            <button id="move-right" class="map-control-button direction-right" type="button" aria-label="Déplacer vers la droite" data-i18n-aria="moveRight">→</button>
+            <button id="move-down" class="map-control-button direction-down" type="button" aria-label="Déplacer vers le bas" data-i18n-aria="moveDown">↓</button>
           </div>
 
-          <button id="zoom-in" class="map-control-button" type="button" aria-label="Agrandir le plan">+</button>
-          <button id="zoom-out" class="map-control-button" type="button" aria-label="Réduire le plan">−</button>
-          <button id="reset-map" class="map-control-button reset-map-button" type="button" aria-label="Recentrer le plan">⟳</button>
+          <button id="zoom-in" class="map-control-button" type="button" aria-label="Agrandir le plan" data-i18n-aria="zoomIn">+</button>
+          <button id="zoom-out" class="map-control-button" type="button" aria-label="Réduire le plan" data-i18n-aria="zoomOut">−</button>
+          <button id="reset-map" class="map-control-button reset-map-button" type="button" aria-label="Recentrer le plan" data-i18n-aria="reset">⟳</button>
         </div>
       </div>
     </div>
@@ -138,7 +137,7 @@
         id="close-artwork-panel"
         class="panel-close-button"
         type="button"
-        aria-label="Fermer la fiche"
+        aria-label="Fermer la fiche" data-i18n-aria="close"
       >×</button>
 
       <div class="artwork-panel-content">
