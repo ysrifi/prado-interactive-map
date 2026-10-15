@@ -831,3 +831,88 @@ will-change: transform;
   }
 
 }
+
+/* =========================================
+   SÉLECTEUR DE LANGUE FR / EN
+========================================= */
+
+.museum-header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.museum-header-top .museum-logo {
+  margin-bottom: 0;
+}
+
+.language-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #ffffff;
+  flex-shrink: 0;
+}
+
+.language-button {
+  border: none;
+  border-radius: 7px;
+  padding: 8px 11px;
+  background: transparent;
+  color: var(--text-light);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.language-button.active {
+  background: var(--traveloptim-green);
+  color: #ffffff;
+}
+
+.language-button:not(.active):hover {
+  background: #e8f5f0;
+  color: var(--traveloptim-green-dark);
+}
+
+.language-button:focus-visible {
+  outline: 2px solid var(--traveloptim-green-dark);
+  outline-offset: 2px;
+}
+
+.language-separator {
+  color: var(--border);
+  font-size: 14px;
+  user-select: none;
+}
+
+/* Mobile */
+
+@media (max-width: 700px) {
+
+  .museum-header-top {
+    align-items: center;
+    gap: 10px;
+  }
+
+  .museum-header-top .museum-logo {
+    max-width: 65%;
+    height: auto;
+    max-height: 45px;
+    object-fit: contain;
+  }
+
+  .language-button {
+    padding: 7px 9px;
+    font-size: 12px;
+  }
+
+}
