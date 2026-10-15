@@ -9,7 +9,40 @@
 <body>
 <main class="museum-app">
   <header class="museum-header">
-    <img class="museum-logo" src="images/logo-traveloptim.png" alt="TravelOptim">
+
+  <div class="museum-header-top">
+
+    <img
+      class="museum-logo"
+      src="images/logo-traveloptim.png"
+      alt="TravelOptim"
+    >
+
+    <div class="language-switcher"
+         role="group"
+         aria-label="Choisir la langue">
+
+      <button
+        type="button"
+        class="language-button active"
+        data-lang="fr"
+        aria-pressed="true">
+        FR
+      </button>
+
+      <span class="language-separator">|</span>
+
+      <button
+        type="button"
+        class="language-button"
+        data-lang="en"
+        aria-pressed="false">
+        EN
+      </button>
+
+    </div>
+
+  </div>
     <h1 class="museum-title">Plan interactif du Museo del Prado</h1>
     <p class="museum-introduction">Sélectionnez un étage, puis cliquez sur une palette pour découvrir l’emplacement et les informations essentielles de chaque chef-d’œuvre.</p>
   </header>
