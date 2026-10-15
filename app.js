@@ -132,6 +132,8 @@ const travelOptimRouteLine =
    ÉTAT DU PLAN
 ========================= */
 let currentFloor = Number(museumData.defaultFloor);
+let currentLanguage = "fr";
+let selectedArtworkId = null;
 
 const mapState = {
   scale: 1,
@@ -496,13 +498,13 @@ function renderTravelOptimRouteMarkers() {
     firstPoint,
     "start",
     "▶",
-    "Début du parcours TravelOptim"
+    translations[currentLanguage].routeStart
   );
   createTravelOptimRouteMarker(
     lastPoint,
     "end",
     "■",
-    "Fin du parcours TravelOptim"
+    translations[currentLanguage].routeEnd
   );
   updateTravelOptimRouteMarkerScale();
 }
@@ -1058,97 +1060,72 @@ floorTabs.forEach(function (tab) {
 /* =========================
    REMPLIR LA FICHE DE L’ŒUVRE
 ========================= */
+function getArtworkTranslation(artwork) {
+  return translations[currentLanguage].artworks?.[artwork.id] || {};
+}
+
+function getArtworkDisplay(artwork) {
+  const translated = getArtworkTranslation(artwork);
+  return {
+    title: translated.title || artwork.title || "",
+    artist: translated.artist || artwork.artist || "",
+    year: translated.year || artwork.year || translations[currentLanguage].unavailable,
+    medium: translated.medium || artwork.medium || translations[currentLanguage].unavailable
+  };
+}
+
 function fillArtworkPanel(artwork) {
-  panelArtworkTitle.textContent =
-    artwork.title || "";
-  panelArtworkArtist.textContent =
-    artwork.artist || "";
-  panelArtworkYear.textContent =
-    artwork.year || "Information à venir";
-  panelArtworkFloor.textContent =
-    `Étage ${artwork.floor}`;
-  panelArtworkRoom.textContent =
-    `Salle ${artwork.room}`;
-  panelArtworkMedium.textContent =
-    artwork.medium || "Information à venir";
-  /* =========================
-     LIEN VERS L’ARTICLE
-  ========================= */
-  if (
-    artwork.featured === true &&
-    artwork.anchor
-  ) {
-    panelArticleLink.href =
-      artwork.anchor;
-    panelArticleLink.hidden =
-      false;
+  const t = translations[currentLanguage];
+  const info = getArtworkDisplay(artwork);
+  panelArtworkTitle.textContent = info.title;
+  panelArtworkArtist.textContent = info.artist;
+  panelArtworkYear.textContent = info.year;
+  panelArtworkFloor.textContent = `${t.floor} ${artwork.floor}`;
+  panelArtworkRoom.textContent = `${t.room} ${artwork.room}`;
+  panelArtworkMedium.textContent = info.medium;
+
+  if (artwork.featured === true && artwork.anchor) {
+    panelArticleLink.href = artwork.anchor;
+    panelArticleLink.hidden = false;
   } else {
-    panelArticleLink.hidden =
-      true;
+    panelArticleLink.hidden = true;
+    panelArticleLink.removeAttribute("href");
   }
 
-/* =========================================
-   NAVIGATION VERS L'ARTICLE TRAVELOPTIM
-========================================= */
+  if (artwork.image) {
+    panelArtworkImage.src = artwork.image;
+    panelArtworkImage.alt = `${info.title} — ${info.artist}`;
+    panelArtworkImage.hidden = false;
+  } else {
+    panelArtworkImage.removeAttribute("src");
+    panelArtworkImage.alt = "";
+    panelArtworkImage.hidden = true;
+  }
+}
 
-const PRADO_ARTICLE_URL =
-  "https://traveloptim.com/madrid-fr/visiter-musee-prado-madrid/";
+/* Lien de l'article : un seul écouteur, sans duplication à chaque ouverture. */
+const PRADO_ARTICLE_URLS = {
+  fr: "https://traveloptim.com/madrid-fr/visiter-musee-prado-madrid/",
+  // Remplacer par l'URL anglaise quand l'article sera publié.
+  en: null
+};
 
 panelArticleLink.addEventListener("click", function (event) {
-
-  const anchor = new URL(
-    panelArticleLink.href,
-    window.location.href
-  ).hash;
-
+  const anchor = new URL(panelArticleLink.href, window.location.href).hash;
   if (!/^#[a-z0-9-]+$/.test(anchor)) return;
-
   event.preventDefault();
 
-  // Plan intégré dans WordPress
   if (window.parent !== window) {
-
     window.parent.postMessage(
-      {
-        type: "TRAVELOPTIM_SCROLL_TO_ARTWORK",
-        anchor: anchor
-      },
+      { type: "TRAVELOPTIM_SCROLL_TO_ARTWORK", anchor },
       "https://traveloptim.com"
     );
-
   } else {
-
-  // Plan ouvert en plein écran :
-  // ouvrir l'article dans un nouvel onglet
-  window.open(
-    PRADO_ARTICLE_URL + anchor,
-    "_blank",
-    "noopener,noreferrer"
-  );
-
-}
-
-});
-   
-  /* =========================
-     IMAGE
-  ========================= */
-  if (artwork.image) {
-    panelArtworkImage.src =
-      artwork.image;
-    panelArtworkImage.alt =
-      `${artwork.title} — ${artwork.artist}`;
-    panelArtworkImage.hidden =
-      false;
-  } else {
-    panelArtworkImage.removeAttribute(
-      "src"
-    );
-    panelArtworkImage.alt = "";
-    panelArtworkImage.hidden =
-      true;
+    const articleUrl = PRADO_ARTICLE_URLS[currentLanguage] || PRADO_ARTICLE_URLS.fr;
+    window.open(articleUrl + anchor, "_blank", "noopener,noreferrer");
   }
-}
+});
+
 /* =========================
    OUVRIR LA FICHE
 ========================= */
@@ -1173,6 +1150,7 @@ function openArtworkPanel() {
    FERMER LA FICHE
 ========================= */
 function closeArtworkPanel() {
+  selectedArtworkId = null;
   museumWorkspace.classList.remove(
     "panel-open"
   );
@@ -1193,7 +1171,7 @@ function createArtworkMarker(artwork) {
   marker.dataset.floor =
     artwork.floor;
   marker.dataset.title =
-    artwork.title;
+    getArtworkDisplay(artwork).title;
   marker.style.left =
     `${artwork.position.x}%`;
   marker.style.top =
@@ -1229,7 +1207,7 @@ function createArtworkMarker(artwork) {
   }
   marker.setAttribute(
     "aria-label",
-    `${artwork.title}, ${artwork.artist}`
+    `${getArtworkDisplay(artwork).title}, ${getArtworkDisplay(artwork).artist}`
   );
   marker.addEventListener(
     "click",
@@ -1246,6 +1224,7 @@ function createArtworkMarker(artwork) {
       selectArtworkMarker(
         artwork.id
       );
+      selectedArtworkId = artwork.id;
       fillArtworkPanel(
         artwork
       );
@@ -1403,125 +1382,83 @@ setTravelOptimRouteVisibility(
 );
 
 /* =========================================
-   BILINGUISME — GESTION DES IMAGES DU PLAN
+   BILINGUISME — INTERFACE, PLAN ET ŒUVRES
 ========================================= */
-
-const museumMapImage =
-  document.getElementById("museum-map-image");
-
-const languageButtons =
-  document.querySelectorAll(".language-button");
-
-let currentLanguage = "fr";
+const museumMapImage = document.getElementById("museum-map-image");
+const languageButtons = document.querySelectorAll(".language-button");
 
 function setMapLanguage(lang) {
-
-  if (lang !== "fr" && lang !== "en") {
-    return;
-  }
-
+  if (!Object.prototype.hasOwnProperty.call(translations, lang)) return;
   currentLanguage = lang;
-
-     // Récupérer le dictionnaire de la langue
   const t = translations[lang];
 
-  // Traduire les éléments fixes
-  document.querySelectorAll("[data-i18n]").forEach(
-    function (element) {
-      const key = element.dataset.i18n;
-
-      if (t[key] !== undefined) {
-        element.textContent = t[key];
-      }
-    }
-  );
-
-  // Traduire les boutons des étages
-  document.querySelectorAll("[data-i18n-floor]").forEach(
-    function (button) {
-      button.textContent =
-        `${t.floor} ${button.dataset.floor}`;
-    }
-  );
-
-  // Traduire le titre de l'onglet
-  document.title = t.pageTitle;
-
-  // Traduire le bouton du parcours selon son état actuel
-  const routeIsVisible =
-    travelOptimRouteLayer.classList.contains("is-visible");
-
-  toggleRouteButton.textContent =
-    routeIsVisible ? t.hideRoute : t.showRoute;
-
-  // Changer l'image du plan
-  museumMapImage.src =
-    lang === "en"
-      ? "images/plan-prado-en.png"
-      : "images/plan-prado-fr.png";
-
-  // Adapter le texte alternatif
-  museumMapImage.alt =
-    lang === "en"
-      ? "Floor map of the Prado Museum"
-      : "Plan des étages du Museo del Prado";
-
-  // Mettre à jour les boutons
-  languageButtons.forEach(function (button) {
-
-    const isActive =
-      button.dataset.lang === lang;
-
-    button.classList.toggle(
-      "active",
-      isActive
-    );
-
-    button.setAttribute(
-      "aria-pressed",
-      String(isActive)
-    );
-
+  document.querySelectorAll("[data-i18n]").forEach(function (element) {
+    const value = t[element.dataset.i18n];
+    if (typeof value === "string") element.textContent = value;
   });
 
-  // Mettre à jour la langue du document
-  document.documentElement.lang = lang;
+  document.querySelectorAll("[data-i18n-aria]").forEach(function (element) {
+    const value = t[element.dataset.i18nAria];
+    if (typeof value === "string") element.setAttribute("aria-label", value);
+  });
 
-  // Mémoriser la préférence
-  try {
-    localStorage.setItem(
-      "traveloptim-prado-language",
-      lang
+  document.querySelectorAll("[data-i18n-floor]").forEach(function (button) {
+    button.textContent = `${t.floor} ${button.dataset.floor}`;
+  });
+
+  document.title = t.pageTitle;
+  document.documentElement.lang = lang;
+  museumMapImage.src = lang === "en"
+    ? "images/plan-prado-en.png"
+    : "images/plan-prado-fr.png";
+  museumMapImage.alt = t.mapAlt;
+
+  languageButtons.forEach(function (button) {
+    const active = button.dataset.lang === lang;
+    button.classList.toggle("active", active);
+    button.setAttribute("aria-pressed", String(active));
+  });
+
+  // Conserver l'état du parcours et mettre à jour ses textes.
+  setTravelOptimRouteVisibility(
+    travelOptimRouteLayer.classList.contains("is-visible")
+  );
+  renderTravelOptimRouteMarkers();
+
+  // Actualiser les infobulles et les libellés accessibles des 32 palettes.
+  museumData.artworks.forEach(function (artwork) {
+    const marker = Array.from(markersContainer.children).find(
+      el => el.dataset.artworkId === artwork.id
     );
-  } catch (error) {
-    // Continuer sans mémorisation si le stockage est indisponible.
+    if (!marker) return;
+    const info = getArtworkDisplay(artwork);
+    marker.dataset.title = info.title;
+    marker.setAttribute("aria-label", `${info.title}, ${info.artist}`);
+  });
+
+  // Mettre à jour la fiche déjà ouverte, sans perdre la sélection ni le zoom.
+  if (selectedArtworkId && museumWorkspace.classList.contains("panel-open")) {
+    const artwork = museumData.artworks.find(a => a.id === selectedArtworkId);
+    if (artwork) fillArtworkPanel(artwork);
   }
 
+  try {
+    localStorage.setItem("traveloptim-prado-language", lang);
+  } catch (error) {
+    // L'application reste utilisable si le stockage est bloqué.
+  }
 }
 
-// Clic sur FR ou EN
 languageButtons.forEach(function (button) {
-
   button.addEventListener("click", function () {
-
-    setMapLanguage(
-      button.dataset.lang
-    );
-
+    setMapLanguage(button.dataset.lang);
   });
-
 });
 
-// Restaurer la langue enregistrée
 let savedLanguage = "fr";
-
 try {
-  savedLanguage =
-    localStorage.getItem(
-      "traveloptim-prado-language"
-    ) || "fr";
+  savedLanguage = localStorage.getItem("traveloptim-prado-language") || "fr";
 } catch (error) {
-  // Français par défaut.
+  // Langue par défaut.
 }
-
 setMapLanguage(savedLanguage);
