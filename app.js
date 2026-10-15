@@ -438,10 +438,12 @@ function setTravelOptimRouteVisibility(
     "aria-pressed",
     String(isVisible)
   );
+    const t = translations[currentLanguage];
+
   toggleRouteButton.textContent =
     isVisible
-      ? "Masquer le parcours TravelOptim"
-      : "Afficher le parcours TravelOptim";
+      ? t.hideRoute
+      : t.showRoute;
 }
 toggleRouteButton.addEventListener(
   "click",
@@ -1419,6 +1421,38 @@ function setMapLanguage(lang) {
   }
 
   currentLanguage = lang;
+
+     // Récupérer le dictionnaire de la langue
+  const t = translations[lang];
+
+  // Traduire les éléments fixes
+  document.querySelectorAll("[data-i18n]").forEach(
+    function (element) {
+      const key = element.dataset.i18n;
+
+      if (t[key] !== undefined) {
+        element.textContent = t[key];
+      }
+    }
+  );
+
+  // Traduire les boutons des étages
+  document.querySelectorAll("[data-i18n-floor]").forEach(
+    function (button) {
+      button.textContent =
+        `${t.floor} ${button.dataset.floor}`;
+    }
+  );
+
+  // Traduire le titre de l'onglet
+  document.title = t.pageTitle;
+
+  // Traduire le bouton du parcours selon son état actuel
+  const routeIsVisible =
+    travelOptimRouteLayer.classList.contains("is-visible");
+
+  toggleRouteButton.textContent =
+    routeIsVisible ? t.hideRoute : t.showRoute;
 
   // Changer l'image du plan
   museumMapImage.src =
