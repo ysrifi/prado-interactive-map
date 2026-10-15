@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="fr">
 <head>
@@ -6,78 +7,111 @@
   <title>Plan interactif du Museo del Prado | TravelOptim</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 <main class="museum-app">
+
+  <!-- EN-TÊTE ET SÉLECTEUR DE LANGUE -->
   <header class="museum-header">
+    <div class="museum-header-top">
+      <img
+        class="museum-logo"
+        src="images/logo-traveloptim.png"
+        alt="TravelOptim"
+      >
 
-  <div class="museum-header-top">
-
-    <img
-      class="museum-logo"
-      src="images/logo-traveloptim.png"
-      alt="TravelOptim"
-    >
-
-    <div class="language-switcher"
-         role="group"
-         aria-label="Choisir la langue">
-
-      <button
-        type="button"
-        class="language-button active"
-        data-lang="fr"
-        aria-pressed="true">
-        FR
-      </button>
-
-      <span class="language-separator">|</span>
-
-      <button
-        type="button"
-        class="language-button"
-        data-lang="en"
-        aria-pressed="false">
-        EN
-      </button>
-
+      <div class="language-switcher" role="group" aria-label="Choisir la langue">
+        <button type="button" class="language-button active" data-lang="fr" aria-pressed="true">FR</button>
+        <span class="language-separator" aria-hidden="true">|</span>
+        <button type="button" class="language-button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
     </div>
 
-  </div>
-    <h1 class="museum-title">Plan interactif du Museo del Prado</h1>
-    <p class="museum-introduction">Sélectionnez un étage, puis cliquez sur une palette pour découvrir l’emplacement et les informations essentielles de chaque chef-d’œuvre.</p>
+    <h1 class="museum-title" data-i18n="museumTitle">
+      Plan interactif du Museo del Prado
+    </h1>
+
+    <p class="museum-introduction" data-i18n="introduction">
+      Sélectionnez un étage, puis cliquez sur une palette pour découvrir
+      l’emplacement et les informations essentielles de chaque chef-d’œuvre.
+    </p>
   </header>
 
+  <!-- ONGLETS DES ÉTAGES -->
   <nav class="floor-tabs" aria-label="Sélectionner un étage du musée">
-    <button class="floor-tab" type="button" data-floor="2" aria-pressed="false">Étage 2</button>
-    <button class="floor-tab" type="button" data-floor="1" aria-pressed="false">Étage 1</button>
-    <button class="floor-tab active" type="button" data-floor="0" aria-pressed="true">Étage 0</button>
+    <button class="floor-tab" type="button" data-floor="2" data-i18n-floor aria-pressed="false">Étage 2</button>
+    <button class="floor-tab" type="button" data-floor="1" data-i18n-floor aria-pressed="false">Étage 1</button>
+    <button class="floor-tab active" type="button" data-floor="0" data-i18n-floor aria-pressed="true">Étage 0</button>
   </nav>
 
+  <!-- PARCOURS TRAVELOPTIM -->
   <div class="route-toolbar">
-    <button id="toggle-route-button" class="toggle-route-button" type="button" aria-pressed="false" aria-controls="traveloptim-route">Afficher le parcours TravelOptim</button>
+    <button
+      id="toggle-route-button"
+      class="toggle-route-button"
+      type="button"
+      aria-pressed="false"
+      aria-controls="traveloptim-route"
+    >
+      Afficher le parcours TravelOptim
+    </button>
   </div>
 
+  <!-- ESPACE INTERACTIF -->
   <section class="museum-workspace" id="museum-workspace">
+
     <div class="map-column">
-      <div class="map-viewport" id="map-viewport" aria-label="Plan interactif du musée, déplaçable et zoomable">
+      <div
+        class="map-viewport"
+        id="map-viewport"
+        aria-label="Plan interactif du musée, déplaçable et zoomable"
+      >
         <div class="map-stage" id="map-stage">
+
+          <!-- IMAGE FR / EN -->
           <img
-  class="museum-map"
-  id="museum-map-image"
-  src="images/plan-prado-fr.png"
-  alt="Plan des étages du Museo del Prado"
-  draggable="false"
->
-          <svg class="traveloptim-route" id="traveloptim-route" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-            <polyline class="traveloptim-route-line" id="traveloptim-route-line" fill="none" points=""></polyline>
+            class="museum-map"
+            id="museum-map-image"
+            src="images/plan-prado-fr.png"
+            alt="Plan des étages du Museo del Prado"
+            draggable="false"
+          >
+
+          <!-- PARCOURS -->
+          <svg
+            class="traveloptim-route"
+            id="traveloptim-route"
+            viewBox="0 0 100 100"
+            preserveAspectRatio="none"
+            aria-hidden="true"
+          >
+            <polyline
+              class="traveloptim-route-line"
+              id="traveloptim-route-line"
+              fill="none"
+              points=""
+            ></polyline>
           </svg>
-          <div class="traveloptim-route-markers" id="traveloptim-route-markers" aria-hidden="true"></div>
+
+          <div
+            class="traveloptim-route-markers"
+            id="traveloptim-route-markers"
+            aria-hidden="true"
+          ></div>
+
+          <!-- OMBRES DES ÉTAGES -->
           <div class="floor-overlay" id="floor-overlay" aria-hidden="true">
-            <div class="shade shade-top"></div><div class="shade shade-right"></div>
-            <div class="shade shade-bottom"></div><div class="shade shade-left"></div>
+            <div class="shade shade-top"></div>
+            <div class="shade shade-right"></div>
+            <div class="shade shade-bottom"></div>
+            <div class="shade shade-left"></div>
           </div>
+
+          <!-- PALETTES DES ŒUVRES -->
           <div class="artwork-markers" id="artwork-markers"></div>
         </div>
+
+        <!-- CONTRÔLES DU PLAN -->
         <div class="map-controls" aria-label="Contrôles du plan">
           <div class="direction-controls">
             <button id="move-up" class="map-control-button direction-up" type="button" aria-label="Déplacer vers le haut">↑</button>
@@ -85,101 +119,90 @@
             <button id="move-right" class="map-control-button direction-right" type="button" aria-label="Déplacer vers la droite">→</button>
             <button id="move-down" class="map-control-button direction-down" type="button" aria-label="Déplacer vers le bas">↓</button>
           </div>
+
           <button id="zoom-in" class="map-control-button" type="button" aria-label="Agrandir le plan">+</button>
           <button id="zoom-out" class="map-control-button" type="button" aria-label="Réduire le plan">−</button>
           <button id="reset-map" class="map-control-button reset-map-button" type="button" aria-label="Recentrer le plan">⟳</button>
         </div>
       </div>
     </div>
-    
-<!-- =========================================
-     FICHE DÉTAILLÉE DE L’ŒUVRE
-========================================= -->
 
-<aside
-  class="artwork-panel"
-  id="artwork-panel"
-  aria-hidden="true"
-  aria-live="polite"
->
-
-  <!-- Bouton de fermeture -->
-  <button
-    id="close-artwork-panel"
-    class="panel-close-button"
-    type="button"
-    aria-label="Fermer la fiche"
-  >
-    ×
-  </button>
-
-  <!-- Contenu de la fiche -->
-  <div class="artwork-panel-content">
-
-    <!-- Image -->
-    <img
-      id="panel-artwork-image"
-      class="panel-artwork-image"
-      alt=""
-      hidden
+    <!-- FICHE DÉTAILLÉE DE L’ŒUVRE -->
+    <aside
+      class="artwork-panel"
+      id="artwork-panel"
+      aria-hidden="true"
+      aria-live="polite"
     >
+      <button
+        id="close-artwork-panel"
+        class="panel-close-button"
+        type="button"
+        aria-label="Fermer la fiche"
+      >×</button>
 
-    <!-- Titre et artiste -->
-    <h2
-      id="panel-artwork-title"
-      class="panel-artwork-title"
-    ></h2>
+      <div class="artwork-panel-content">
 
-    <p
-      id="panel-artwork-artist"
-      class="panel-artwork-artist"
-    ></p>
+        <img
+          id="panel-artwork-image"
+          class="panel-artwork-image"
+          alt=""
+          hidden
+        >
 
-    <!-- Informations sur l’œuvre -->
-    <dl class="panel-artwork-details">
+        <h2
+          id="panel-artwork-title"
+          class="panel-artwork-title"
+        ></h2>
 
-      <!-- Année -->
-      <div class="artwork-detail">
-        <dt>Année</dt>
-        <dd id="panel-artwork-year"></dd>
+        <p
+          id="panel-artwork-artist"
+          class="panel-artwork-artist"
+        ></p>
+
+        <dl class="panel-artwork-details">
+
+          <div class="artwork-detail">
+            <dt data-i18n="year">Année</dt>
+            <dd id="panel-artwork-year"></dd>
+          </div>
+
+          <div class="artwork-detail">
+            <dt data-i18n="location">Localisation</dt>
+            <dd>
+              <span id="panel-artwork-floor"></span>
+              <span aria-hidden="true"> · </span>
+              <span id="panel-artwork-room"></span>
+            </dd>
+          </div>
+
+          <div class="artwork-detail">
+            <dt data-i18n="medium">Technique et dimensions</dt>
+            <dd id="panel-artwork-medium"></dd>
+          </div>
+
+        </dl>
+
+        <a
+          id="panel-article-link"
+          class="panel-article-link"
+          href="#"
+          data-i18n="articleLink"
+          hidden
+        >
+          Explorer dans l’article
+        </a>
+
       </div>
-
-      <!-- Localisation -->
-      <div class="artwork-detail">
-        <dt>Localisation</dt>
-        <dd>
-          <span id="panel-artwork-floor"></span>
-          <span aria-hidden="true"> · </span>
-          <span id="panel-artwork-room"></span>
-        </dd>
-      </div>
-
-      <!-- Technique et dimensions -->
-      <div class="artwork-detail">
-        <dt>Technique et dimensions</dt>
-        <dd id="panel-artwork-medium"></dd>
-      </div>
-
-    </dl>
-
-    <!-- Lien vers l’article -->
-    <a
-      id="panel-article-link"
-      class="panel-article-link"
-      href="#"
-      hidden
-    >
-      Explorer dans l’article
-    </a>
-
-  </div>
-
-</aside>
+    </aside>
 
   </section>
 </main>
+
+<!-- FICHIERS JAVASCRIPT -->
 <script src="data.js"></script>
 <script src="translations.js"></script>
 <script src="app.js"></script>
+
 </body>
 </html>
