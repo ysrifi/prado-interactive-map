@@ -1399,3 +1399,95 @@ renderTravelOptimRouteMarkers();
 setTravelOptimRouteVisibility(
   false
 );
+
+/* =========================================
+   BILINGUISME — GESTION DES IMAGES DU PLAN
+========================================= */
+
+const museumMapImage =
+  document.getElementById("museum-map-image");
+
+const languageButtons =
+  document.querySelectorAll(".language-button");
+
+let currentLanguage = "fr";
+
+function setMapLanguage(lang) {
+
+  if (lang !== "fr" && lang !== "en") {
+    return;
+  }
+
+  currentLanguage = lang;
+
+  // Changer l'image du plan
+  museumMapImage.src =
+    lang === "en"
+      ? "images/plan-prado-en.png"
+      : "images/plan-prado-fr.png";
+
+  // Adapter le texte alternatif
+  museumMapImage.alt =
+    lang === "en"
+      ? "Floor map of the Prado Museum"
+      : "Plan des étages du Museo del Prado";
+
+  // Mettre à jour les boutons
+  languageButtons.forEach(function (button) {
+
+    const isActive =
+      button.dataset.lang === lang;
+
+    button.classList.toggle(
+      "active",
+      isActive
+    );
+
+    button.setAttribute(
+      "aria-pressed",
+      String(isActive)
+    );
+
+  });
+
+  // Mettre à jour la langue du document
+  document.documentElement.lang = lang;
+
+  // Mémoriser la préférence
+  try {
+    localStorage.setItem(
+      "traveloptim-prado-language",
+      lang
+    );
+  } catch (error) {
+    // Continuer sans mémorisation si le stockage est indisponible.
+  }
+
+}
+
+// Clic sur FR ou EN
+languageButtons.forEach(function (button) {
+
+  button.addEventListener("click", function () {
+
+    setMapLanguage(
+      button.dataset.lang
+    );
+
+  });
+
+});
+
+// Restaurer la langue enregistrée
+let savedLanguage = "fr";
+
+try {
+  savedLanguage =
+    localStorage.getItem(
+      "traveloptim-prado-language"
+    ) || "fr";
+} catch (error) {
+  // Français par défaut.
+}
+
+setMapLanguage(savedLanguage);
