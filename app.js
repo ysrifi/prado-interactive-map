@@ -1106,8 +1106,7 @@ function fillArtworkPanel(artwork) {
 /* Lien de l'article : un seul écouteur, sans duplication à chaque ouverture. */
 const PRADO_ARTICLE_URLS = {
   fr: "https://traveloptim.com/madrid-fr/visiter-musee-prado-madrid/",
-  // Remplacer par l'URL anglaise quand l'article sera publié.
-  en: null
+  en: "https://traveloptim.com/en/madrid-en/visit-prado-museum-madrid/"
 };
 
 panelArticleLink.addEventListener("click", function (event) {
